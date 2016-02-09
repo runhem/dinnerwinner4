@@ -1,7 +1,9 @@
 //DinnerView1 Object constructor
 var DinnerView1 = function (container, model) {
+
+	model.addObserver(this);
+
 	model.removeFromPending();
-	//RÄDDAR OSS
 
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that responed to interaction)

@@ -1,5 +1,20 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
+
+	var observersArray = [];
+
+	//Method that will add new observer to array "observersArray"
+	this.addObserver = function(observer){
+		observersArray.push(observer);
+	}
+
+	//Method that will call the update method on all the observers in the array
+	this.notifyObservers = function(obj){
+		for(x in observersArray){
+			//ska göra någonting
+		}
+	}
+
 	var pending = [];
 	//Meny för alla valda recept att stoppas i
  	var menu = {'starter':[],'main':[],'dessert':[]};

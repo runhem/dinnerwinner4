@@ -10,4 +10,6 @@ $(function() {
 // 	var dinnerView4 = new DinnerView4($(".container"), model);
 //	var dinnerView5 = new DinnerView5($(".container"), model);
 
+	var menuViewController = new DinnerViewController(MenuView, model);
+
 });

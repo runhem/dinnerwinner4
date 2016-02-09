@@ -2,8 +2,8 @@
 var MenuView = function (container, model) {
 	
 	this.numberOfGuests = container.find("#numbGuest");
-	//this.plusButton = container.find("#plusGuest");
-	//this.minusButton = container.find("#minusGuest");
+	this.plusButton = container.find("#plusGuest");
+	this.minusButton = container.find("#minusGuest");
 	this.menuDish = container.find("#menu-dish");
 	this.price = container.find("#dinnerCost");
 

@@ -1,27 +1,29 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
-	var observersArray = [];
-
-	//Method that will add new observer to array "observersArray"
-	this.addObserver = function(observer){
-		observersArray.push(observer);
-	}
-
-	//Method that will call the update method on all the observers in the array
-	this.notifyObservers = function(obj){
-		for(x in observersArray){
-			//ska göra någonting
-		}
-	}
-
+	var pending = [];
 	//Meny för alla valda recept att stoppas i
  	var menu = {'starter':[],'main':[],'dessert':[]};
 	
+	this.addToPending = function(id){
+		for(key in dishes){
+			if (dishes[key].id == id){
+				pending.push(dishes[key]);
+				console.log(pending);
+			}
+		}
+	}
+	this.removeFromPending = function(){
+		while(pending.length > 0) {
+    pending.pop();
+}
+	}
+
+	this.returnPending = function(){
+		return pending;
+	}
 	//TODO Lab 2 implement the data structure that will hold number of guest
 	// and selected dinner options for dinner menu
 	this.setNumberOfGuests = function(num) {
-		//call notiyObservers method (with no argument or pass any object)
-		//information to send to the view about what changes
 		return num;
 	}
 

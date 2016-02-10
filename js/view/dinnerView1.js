@@ -1,7 +1,6 @@
 //DinnerView1 Object constructor
 var DinnerView1 = function (container, model) {
 
-	model.addObserver(this);
 
 	model.removeFromPending();
 
@@ -22,6 +21,7 @@ var DinnerView1 = function (container, model) {
 			+"<div id="+'"'+"description"+'"'+">"+"<p>"+dishes[x].description.slice(0,86)+"..."+"</p>"+"</div>"
 			+"</div>");
 	};
+		model.addObserver(this);
+
 
 }
- 

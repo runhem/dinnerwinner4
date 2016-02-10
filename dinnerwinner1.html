@@ -177,6 +177,13 @@
       text-align: justify;
     }
 
+    .removebtn{
+      margin:2px;
+      padding:2px;
+      width:100%;
+      font-size:8pt;
+    }
+
   	</style>
   </head>
 
@@ -206,9 +213,11 @@
               <tr>
                 <th>Dish Name</th>
                 <th>Cost</th>
+                <th>Hej</th>
               </tr>
             </thead>
-            <tbody id="menu-dish"></tbody>
+            <tbody id="menu-dish">   view.container.find(".removebtn").click( function()
+</tbody>
             <tbody id="dinnerCost"></tbody>
         </table>
       
@@ -263,5 +272,6 @@
     <script src="js/model/dinnerModel.js"></script>
     <script src="js/view/dinnerView1.js"></script>
     <script src="js/view/menuView.js"></script>
+    <script src="js/view/DinnerViewController.js"></script>
   </body>
 </html>

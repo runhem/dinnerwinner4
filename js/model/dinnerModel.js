@@ -1,19 +1,62 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
 
+	var observersArray = [];
+
+	this.number = 5;
+
+	//Method that will add new observer to array "_observersArray"
+	this.addObserver = function(observer){
+		observersArray.push(observer);
+	}
+
+	//Method that will call the update method on all the observers in the array
+	this.notifyObservers = function(obj){
+		for(var i=0; i<observersArray.length; i++){
+			observersArray[i].update(obj);
+		}
+	}
+
+
+	var pending = [];
 	//Meny för alla valda recept att stoppas i
  	var menu = {'starter':[],'main':[],'dessert':[]};
 	
+	this.addToPending = function(id){
+		for(key in dishes){
+			if (dishes[key].id == id){
+				pending.push(dishes[key]);
+				console.log(pending);
+			}
+		}
+	}
+
+	this.removeFromPending = function(){
+		while(pending.length > 0) {
+    	pending.pop();
+    	this.notifyObservers();
+    	console.log("removePending");
+		}
+	}
+
+	this.returnPending = function(){
+		return pending;
+	}
+
 	//TODO Lab 2 implement the data structure that will hold number of guest
 	// and selected dinner options for dinner menu
 	this.setNumberOfGuests = function(num) {
-		return num;
+		this.number = num;
+		if (this.number <= 0){
+			this.number=0;
+		}
+		this.notifyObservers();
+		return this.number;
 	}
 
 	// should return 
 	this.getNumberOfGuests = function() {
-		number = this.setNumberOfGuests(4);
-		return number;
+		return this.number;
 	}
 
 	//Returns the dish that is on the menu for selected type 
@@ -29,10 +72,13 @@ var DinnerModel = function() {
 			return menu.dessert.name;
 		}
 	}
+
 	//Returns all the dishes on the menu.
 	//FUNKAR
 	this.getFullMenu = function() {
 		return menu;
+		notifyObservers();
+		console.log(menu);
 	}
 	//Returns all ingredients for all the dishes on the menu.
 	//FUNKAR
@@ -96,24 +142,28 @@ var DinnerModel = function() {
 				}
 				if(dishes[key].type == 'dessert'){
 					menu.dessert = dishes[key];
-	}
-	}
-	}
+					}
+				}
+			}
+		console.log(menu);
 	}
 
 	//Removes dish from menu
 	//FUNKAR
-	this.removeDishFromMenu = function(id) {
+	this.removeDishFromMenu = function(type) {
 		var removeValue = [];
-		if(menu.starter.id == id){
+		if (type == "starter"){
 			menu.starter = removeValue;
+			console.log(menu);
 			}
-		if(menu.main.id == id){
+		if(type == "main"){
 			menu.main = removeValue;
 			}
-		if(menu.dessert.id == id){
+		if(type == "dessert"){
 			menu.dessert = removeValue;
-			}	
+			}
+		this.notifyObservers();
+		return menu;
 	}
 
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")

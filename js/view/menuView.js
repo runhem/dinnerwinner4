@@ -29,25 +29,51 @@ var MenuView = function (container, model) {
 	var mainIngredList = model.getDishIngredients('main dish');
 	var dessertIngredList = model.getDishIngredients('dessert');
 
+
 	this.update = function(){
 
 	this.numberOfGuests.html(model.getNumberOfGuests());
 
-	this.menuDish.empty();
-	console.log(fullMenu);
+
+	if(fullMenu.starter.length == 0){
+		document.getElementById("starterTr").style.display = 'none';
+	}
+	else{
+	this.starterName.html(fullMenu.starter.name);
+	this.starterPrice.html(model.getTotalMenuPrice(starterIngredList));
+	};
+
+	if(fullMenu.main.length == 0){
+		document.getElementById("mainTr").style.display = 'none';
+	}
+	else{
+	this.mainName.html(fullMenu.main.name);
+	this.mainPrice.html(model.getTotalMenuPrice(mainIngredList));
+	};
+
+	if(fullMenu.dessert.length == 0){
+		document.getElementById("dessertTr").style.display = 'none';
+	}
+	else{
+	this.dessertName.html(fullMenu.dessert.name);
+	this.dessertPrice.html(model.getTotalMenuPrice(dessertIngredList));
+	};
+
+};
+
+
 	if(fullMenu.starter.length !== 0){
-	this.menuDish.append("<tr><td>"+fullMenu.starter.name+"</td><td>"+model.getTotalMenuPrice(starterIngredList)+" SEK</td>"+
+	this.menuDish.append("<tr id="+'"'+"starterTr"+'"'+"><td id="+'"'+"starterName"+'"'+"></td><td id="+'"'+"starterPrice"+'"'+"> SEK</td>"+
 		"<td><button class="+'"'+"btn removebtn"+'"'+"id="+'"'+"removeStarter"+'"'+">X</button></td></tr>");
 	}
 	if(fullMenu.main.length !== 0){
-	this.menuDish.append("<tr><td>"+fullMenu.main.name+"</td><td>"+model.getTotalMenuPrice(mainIngredList)+" SEK</td>"+
+	this.menuDish.append("<tr id="+'"'+"mainTr"+'"'+"><td id="+'"'+"mainName"+'"'+"></td><td id="+'"'+"mainPrice"+'"'+"> SEK</td>"+
 		"<td><button class="+'"'+"btn removebtn"+'"'+"id="+'"'+"removeMain"+'"'+">X</button></td></tr>");
 	}
 	if(fullMenu.dessert.length !== 0){
-	this.menuDish.append("<tr><td>"+fullMenu.dessert.name+"</td><td>"+model.getTotalMenuPrice(dessertIngredList)+" SEK</td>"+
+	this.menuDish.append("<tr id="+'"'+"dessertTr"+'"'+"><td id="+'"'+"dessertName"+'"'+"></td><td id="+'"'+"dessertPrice"+'"'+"> SEK</td>"+
 		"<td><button class="+'"'+"btn removebtn"+'"'+"id="+'"'+"removeDessert"+'"'+">X</button></td></tr>");
 	}
-};
 
 	var pending = model.returnPending();
 
@@ -67,6 +93,17 @@ var MenuView = function (container, model) {
 	else{
 	this.price.append("<tr><td>Total cost:</td><td>"+model.getTotalMenuPrice(allIngredList)+" SEK</td></tr>");
 }
+
+	this.starterName = container.find("#starterName");
+	this.starterPrice = container.find("#starterPrice");
+
+	this.mainName = container.find("#mainName");
+	this.mainPrice = container.find("#mainPrice");
+
+	this.dessertName = container.find("#dessertName");
+	this.dessertPrice = container.find("#dessertPrice");
+
+	
 
 
 	model.addObserver(this);

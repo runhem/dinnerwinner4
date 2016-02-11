@@ -6,12 +6,12 @@ $(function() {
 //	var dinnerView1 = new DinnerView1($(".container"), model);
 //	var dinnerView2 = new DinnerView2($(".container"), model);
 //	var dinnerView3 = new DinnerView3($(".container"), model);
-	var menuView = new MenuView($("#menu-column"), model);
-// 	var dinnerView4 = new DinnerView4($(".container"), model);
-//	var dinnerView5 = new DinnerView5($(".container"), model);
+//	var menuView = new MenuView($("#menu-column"), model);
+ 	var dinnerView = new ViewRouter($(".container"), model);
+//  var dinnerView4 = new DinnerView4($("#page-4"), model);
+//	var dinnerView5 = new DinnerView5($("#page-5"), model);
 
-	var dinnerViewController = new DinnerViewController(menuView, model);
+//	var dinnerViewController = new DinnerViewController(menuView, model);
 
-	
-
+	var routerController = new RouterController(dinnerView, model);
 });

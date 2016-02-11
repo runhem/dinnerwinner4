@@ -72,7 +72,6 @@ var MenuView = function (container, model) {
 		this.pendingPrice.html("0.00");
 	};
 
-	console.log(this.pending);
 	allIngredList = model.getAllIngredients();
  	this.totalCost.html(model.getTotalMenuPrice(allIngredList)+" SEK");
 };

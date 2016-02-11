@@ -17,7 +17,6 @@ var DinnerModel = function() {
 		}
 	}
 
-
 	//Meny för alla valda recept att stoppas i
  	var menu = {'starter':[],'main':[],'dessert':[]};
 	var pending = [];
@@ -164,7 +163,6 @@ var DinnerModel = function() {
 					}
 				}
 			}
-		console.log(menu);
 	}
 
 	//Removes dish from menu
@@ -203,7 +201,7 @@ var DinnerModel = function() {
 			}
 		}
 	  	return dish.type == type && found;
-	  });	
+	  });
 	}
 
 	//function that returns a dish of specific ID

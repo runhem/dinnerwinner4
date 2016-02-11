@@ -69,7 +69,7 @@ var DinnerView1 = function (container, model) {
 	
 // Väljer vilken av typerna som är aktiv och i update kallas sedan på en funktion som sätter style.display=block. 
 
-	this.active = "desserts" 
+	this.active = "desserts";
 	model.addObserver(this);
 	this.update();
 

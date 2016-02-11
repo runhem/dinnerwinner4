@@ -12,4 +12,6 @@ $(function() {
 
 	var dinnerViewController = new DinnerViewController(menuView, model);
 
+	
+
 });

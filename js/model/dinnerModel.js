@@ -18,15 +18,17 @@ var DinnerModel = function() {
 	}
 
 
-	var pending = [];
 	//Meny för alla valda recept att stoppas i
  	var menu = {'starter':[],'main':[],'dessert':[]};
+	var pending = [];
+
 	
 	this.addToPending = function(id){
 		for(key in dishes){
 			if (dishes[key].id == id){
 				pending.push(dishes[key]);
 				console.log(pending);
+				return pending
 			}
 		}
 	}
@@ -41,6 +43,15 @@ var DinnerModel = function() {
 
 	this.returnPending = function(){
 		return pending;
+	}
+
+	this.getPendingPrice = function(){	
+		var pendingPrice = 0;
+		for(x in pending[0].ingredients){
+			pendingPrice = pendingPrice + pending[0].ingredients[x].price;
+		};
+		pendingPrice = pendingPrice*this.getNumberOfGuests();
+		return pendingPrice;
 	}
 
 	//TODO Lab 2 implement the data structure that will hold number of guest
@@ -82,7 +93,7 @@ var DinnerModel = function() {
 	}
 	//Returns all ingredients for all the dishes on the menu.
 	//FUNKAR
-	this.getAllIngredients = function() {
+	this.getAllIngredients = function(){
 		var ingredientList = [];
 		for(pos in menu.starter.ingredients){
 			ingredientList.push(menu.starter.ingredients[pos]);
@@ -102,13 +113,21 @@ var DinnerModel = function() {
 		var pris = 0;
 		for(x in allIngredients){
 		var pris = pris + allIngredients[x].price;
-	}
+			}
 		var personer = this.getNumberOfGuests();
-		return pris * personer;
+		totalPrice = pris * personer
+
+		if(pending.length ==! 0){
+			 totalPrice = totalPrice + this.getPendingPrice();}
+		return totalPrice
+
+		this.notifyObservers();
 	}
+
 
 	this.getDishIngredients = function(type){
 		var dishIngredientList = [];
+		console.log("DISHG")
 		if(type == 'starter'){
 		for(pos in menu.starter.ingredients){
 			dishIngredientList.push(menu.starter.ingredients[pos]);
@@ -154,7 +173,6 @@ var DinnerModel = function() {
 		var removeValue = [];
 		if (type == "starter"){
 			menu.starter = removeValue;
-			console.log(menu);
 			}
 		if(type == "main"){
 			menu.main = removeValue;

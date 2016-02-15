@@ -77,7 +77,6 @@ var DinnerView1 = function (container, model) {
 
 	this.update = function(){
 	this.displayDishes();
-	console.log("Update")
 	};
 
 	

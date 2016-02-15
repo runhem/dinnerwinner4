@@ -14,27 +14,22 @@ var DinnerView3 = function (container, model) {
 
 	//räknar ut pris på ingredienser
 	var dishes = model.getAllDishes('main dish');
-	var pris = 0;
-	for(x in dishes[0].ingredients){
-		var pris = pris + dishes[0].ingredients[x].price;
-	};
+
 
 	var guests = "JA";
 
-	this.name = null;
-	this.image = null;
-	this.description = null;
-	this.selDish = null;
+	selDish = 'French '
 
-	this.showDish = function (name) {
-		this.selDish = model.getDish(name);
-		console.log("sel", this.selDish);
-		this.namn = this.selDish.name;
-		this.image = this.selDish.image;
-		this.description = this.selDish.description;
-	}
+	this.selDish = model.getDish(1);
+	this.namn = this.selDish.name;
+	this.image = this.selDish.image;
+	this.description = this.selDish.description;
+	this.guest = model.getNumberOfGuests();
+	this.price = model.getTotalDishPrice(1);
+
 
 	this.guest = model.getNumberOfGuests();
+	this.spansk = [];
 
 
 	this.dishDisplay.append("<div class="+'"'+"dishName"+'"'+">"+"<h3>"+this.namn+"</h3>"+"</div>"+
@@ -43,31 +38,36 @@ var DinnerView3 = function (container, model) {
  
 	this.tableHeading.append("<h2>"+"Recipe for "+"<span id="+'"'+"guests"+'"'+"></span>"+" people"+"</h2>");
 
-	this.recipeCost.html("<div>"+"SEK "+pris*this.guest+"</div>");
+
+	this.displayIn = function(){
+		for(x in this.selDish.ingredients){
+		this.quantity.append("<tr>")
+		this.quantity.append("<td>"+this.selDish.ingredients[x].quantity*this.guest+"</td>");
+		if(this.selDish.ingredients[x].unit == ''){
+			this.quantity.append("<td>st</td>");
+		}
+		else{
+		this.quantity.append("<td>"+this.selDish.ingredients[x].unit+"</td>");
+		}
+		this.quantity.append("<td>"+this.selDish.ingredients[x].name+"</td>");
+		this.quantity.append("<td>"+"SEK "+this.selDish.ingredients[x].price*this.guest+"</td>");
+		this.quantity.append("</tr>");
+		}
+	};
+
+
 
 	this.update = function(){
 		this.guest = model.getNumberOfGuests();
-		console.log(document.getElementById("guests"));
 		document.getElementById("guests").innerHTML = this.guest;
-		console.log("Gu");
+		this.quantity.empty();
+		this.displayIn();
+		this.recipeCost.html("<td>"+"SEK "+this.price+"</td>");
 	};
 
-	this.showDish('French toast');
 	model.addObserver(this);
 	this.update();
 
-	for(x in this.selDish.ingredients){
-	
-		this.quantity.append("<div>"+this.selDish.ingredients[x].quantity*this.guest+"</div>");
-		if(this.selDish.ingredients[x].unit == ''){
-			this.unit.append("<div>"+'st'+"</div>");
-		}
-		else{
-		this.unit.append("<div>"+this.selDish.ingredients[x].unit+"</div>");
-	}
-		this.ingredients.append("<div>"+this.selDish.ingredients[x].name+"</div>");
-		this.price.append("<div>"+"SEK "+this.selDish.ingredients[x].price*this.guest+"</div>");
-	};
 
 	//Skriver ut totalt pris på valda receptet
 

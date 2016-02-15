@@ -28,9 +28,8 @@ var Dw1Controller = function(view, model) {
 
 	view.container.find(".dish").click( function(){
     	var status = $(this).attr('id');
-    	console.log("I klick")
-    	model.addToPending(status)
-    	view.display(status)
+	    	model.addToPending(status)
+    	view.display("page-3");
 	})
 };
 

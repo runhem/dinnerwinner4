@@ -22,7 +22,9 @@ var menuviewController = function(view, model ) {
   { model.removeDishFromMenu("dessert");
   });
 
-  view.container.find("#confirm").click( function() 
-    { console.log("CONFIRM!")})
+  view.container.find("#confirm-dinner").click( function() 
+    {
+      view.display("page-4")
+    })
 
 };

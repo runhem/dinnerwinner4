@@ -3,7 +3,7 @@ var DinnerModel = function() {
 
 	var observersArray = [];
 
-	this.number = 5;
+	this.number = 4;
 
 	//Method that will add new observer to array "_observersArray"
 	this.addObserver = function(observer){
@@ -13,7 +13,6 @@ var DinnerModel = function() {
 	//Method that will call the update method on all the observers in the array
 	this.notifyObservers = function(obj){
 		for(var i=0; i<observersArray.length; i++){
-			console.log("add obs")
 			observersArray[i].update(obj);
 		}
 	}
@@ -27,7 +26,6 @@ var DinnerModel = function() {
 		for(key in dishes){
 			if (dishes[key].name == name){
 				pending.push(dishes[key]);
-				console.log("add");
 				this.notifyObservers();	
 				return pending
 			}
@@ -38,7 +36,6 @@ var DinnerModel = function() {
 		while(pending.length > 0) {
     	pending.pop();
     	this.notifyObservers();
-    	console.log("removePending");
 		}
 	}
 
@@ -88,6 +85,13 @@ var DinnerModel = function() {
 	//Returns all the dishes on the menu.
 	//FUNKAR
 	this.getFullMenu = function() {
+		for(x in menu){
+			if (!(menu[x].name)){
+				menu[x].name = "None selected";
+				menu[x].image = "none.jpg";
+			}
+		}
+		console.log(menu.starter.name)
 		return menu;
 		notifyObservers();
 		console.log(menu);
@@ -121,9 +125,21 @@ var DinnerModel = function() {
 		if(pending.length ==! 0){
 			 totalPrice = totalPrice + this.getPendingPrice();}
 		return totalPrice
-
 		this.notifyObservers();
+	};
+
+	this.getTotalDishPrice = function(id){
+		var pris = 0;
+		var personer = this.getNumberOfGuests();
+		for (x in dishes){
+		if(dishes[x].id == id){
+		for(y in dishes[x].ingredients){
+		var pris = pris + dishes[x].ingredients[y].price;
+			}
+		return pris*personer
+		}
 	}
+	};
 
 
 	this.getDishIngredients = function(type){
@@ -150,6 +166,7 @@ var DinnerModel = function() {
 	//it is removed from the menu and the new one added.
 	//FUNKAR
 	this.addDishToMenu = function(id) {
+		this.removeFromPending(id);
 		for(key in dishes){
 			if(dishes[key].id == id) {
 				if(dishes[key].type == 'starter'){
@@ -164,7 +181,8 @@ var DinnerModel = function() {
 					}
 				}
 			}
-	}
+		this.notifyObservers();
+	};
 
 	//Removes dish from menu
 	//FUNKAR
@@ -206,9 +224,9 @@ var DinnerModel = function() {
 	}
 
 	//function that returns a dish of specific name
-	this.getDish = function (name) {
+	this.getDish = function (id) {
 	  for(key in dishes){
-			if(dishes[key].name == name) {
+			if(dishes[key].id == id) {
 				return dishes[key];
 			}
 		}

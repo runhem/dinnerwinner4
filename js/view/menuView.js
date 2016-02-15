@@ -10,15 +10,18 @@ var MenuView = function (container, model) {
 	this.price = container.find("#dinnerCost");
 
 	//För att kunna lägga till och ta bort i menyn
-	this.tillagd = container.find("#tillagd");
-	this.borttagen = container.find("#borttagen");
 
 	this.pending = model.returnPending();
 
 //SIDOMENY
-	var dishes = model.getAllDishes('main dish');
 	var guests = model.getNumberOfGuests();
 	//räknar ut pris på ingredienser
+
+
+
+	this.update = function(){
+
+	this.numberOfGuests.html(model.getNumberOfGuests());
 
 	var fullMenu = model.getFullMenu();
 	var allIngredList = model.getAllIngredients();
@@ -27,16 +30,11 @@ var MenuView = function (container, model) {
 	var dessertIngredList = model.getDishIngredients('dessert');
 	var pendingIngredList = model.getDishIngredients('pending');
 
-	this.update = function(){
-		console.log("I update meny")
-
-	this.numberOfGuests.html(model.getNumberOfGuests());
-
-
 	if(fullMenu.starter.length == 0){
 		document.getElementById("starterTr").style.display = 'none';
 	}
 	else{
+	document.getElementById("starterTr").style.display = 'block';
 	this.starterName.html(fullMenu.starter.name);
 	this.starterPrice.html(model.getTotalMenuPrice(starterIngredList)+" SEK");
 	};
@@ -45,6 +43,7 @@ var MenuView = function (container, model) {
 		document.getElementById("mainTr").style.display = 'none';
 	}
 	else{
+	document.getElementById("mainTr").style.display = 'block';
 	this.mainName.html(fullMenu.main.name);
 	this.mainPrice.html(model.getTotalMenuPrice(mainIngredList)+" SEK");
 	};
@@ -53,6 +52,7 @@ var MenuView = function (container, model) {
 		document.getElementById("dessertTr").style.display = 'none';
 	}
 	else{
+	document.getElementById("dessertTr").style.display = 'block';
 	this.dessertName.html(fullMenu.dessert.name);
 	this.dessertPrice.html(model.getTotalMenuPrice(dessertIngredList)+" SEK");
 	};
@@ -107,7 +107,6 @@ this.menuDish.append("<tr id="+'"'+"pendingRow"+'"'+"><td id="+'"'+"pendingName"
 	this.totalCost = container.find("#totalCost")
 
 	model.addObserver(this);
-	console.log("add meny")
 	this.update();
 
 };

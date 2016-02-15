@@ -1,3 +1,15 @@
 var Dw3Controller = function(view, model) {
-	console.log("Funkar")
+	
+	view.container.find("#confirm-dish").click( function(){
+    	model.addDishToMenu(1);
+		view.display("page-1");
+	}
+	);
+
+	view.container.find("#back-2-select").click( function(){
+    	model.removeFromPending();
+		view.display("page-1");
+	}
+	);
+
 };

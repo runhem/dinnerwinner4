@@ -128,18 +128,14 @@
       margin-top:1%;
     }
 
-    .input-group{
-      padding:1%;
-      width:30%;
-    }
+    .input-group {
+      width: 30%;
 
-    .dropdown-menu{
-      margin-left: 70%;
     }
 
    .btn-group{
-      padding-left: 35%;
-      margin-top: -8%;
+      margin-left: 35%;
+      margin-top: -6%;
     }
 
   	#dish-bar{
@@ -193,6 +189,10 @@
       padding:2px;
       width:100%;
       font-size:8pt;
+    }
+
+    .search-group{
+      width:40%;
     }
 
     #ingridient-display{
@@ -279,11 +279,16 @@
     	<div id="search-bar" class="col-md-12">
     		<h2>Select Dish</h2>
         <div id="line-separator1"> </div>
-  		  <div class="input-group">
-    			<input type="text" class="form-control" placeholder="Search for dish...">
-  	 		  <span class="input-group-btn">
-      		<button class="btn btn-default" type="button">Search</button></span>
-        </div> <!-- input-group -->
+        <div class="row">
+  		  <div class="col-lg-6">
+
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+            <button class="btn btn-default" id="search" type="button">Search</button>
+          </span>
+        </div>
+        </div>
 
   		  <div class="btn-group">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Select dish
@@ -297,6 +302,7 @@
           </ul>
 		    </div> <!-- btn group --> 
       </div> <!-- search-bar -->
+    </div>
 
       <!-- LOWER PART OF PAGE 1 -->
 
@@ -310,7 +316,7 @@
         <div class="col-md-6">
           <div id="dish-display"></div>
             <div id="button-row-goBack">
-              <button class="btn btn-default" type="button">back to Selected Dish</button>
+              <button class="btn btn-default" type="button">back to Select Dish</button>
             </div>
           </div>
 
@@ -355,8 +361,9 @@
     <script src="js/view/dinnerView1.js"></script>
     <script src="js/view/dinnerView3.js"></script>
     <script src="js/view/menuView.js"></script>
-    <script src="js/view/viewRouter.js"></script>
-    <script src="js/view/routerController.js"></script>
-    <script src="js/view/DinnerViewController.js"></script>
+    <script src="js/view/mainView.js"></script>
+    <script src="js/view/dw1Controller.js"></script>
+    <script src="js/view/dw3Controller.js"></script>
+    <script src="js/view/menuviewController.js"></script>
   </body>
 </html>

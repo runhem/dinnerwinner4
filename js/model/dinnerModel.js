@@ -13,6 +13,7 @@ var DinnerModel = function() {
 	//Method that will call the update method on all the observers in the array
 	this.notifyObservers = function(obj){
 		for(var i=0; i<observersArray.length; i++){
+			console.log("add obs")
 			observersArray[i].update(obj);
 		}
 	}
@@ -22,11 +23,12 @@ var DinnerModel = function() {
 	var pending = [];
 
 	
-	this.addToPending = function(id){
+	this.addToPending = function(name){
 		for(key in dishes){
-			if (dishes[key].id == id){
+			if (dishes[key].name == name){
 				pending.push(dishes[key]);
-				console.log(pending);
+				console.log("add");
+				this.notifyObservers();	
 				return pending
 			}
 		}
@@ -126,7 +128,6 @@ var DinnerModel = function() {
 
 	this.getDishIngredients = function(type){
 		var dishIngredientList = [];
-		console.log("DISHG")
 		if(type == 'starter'){
 		for(pos in menu.starter.ingredients){
 			dishIngredientList.push(menu.starter.ingredients[pos]);
@@ -204,14 +205,14 @@ var DinnerModel = function() {
 	  });
 	}
 
-	//function that returns a dish of specific ID
-	this.getDish = function (id) {
+	//function that returns a dish of specific name
+	this.getDish = function (name) {
 	  for(key in dishes){
-			if(dishes[key].id == id) {
+			if(dishes[key].name == name) {
 				return dishes[key];
 			}
 		}
-	}
+	};
 
 	
 	// the dishes variable contains an array of all the 

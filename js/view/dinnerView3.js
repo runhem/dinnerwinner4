@@ -19,38 +19,59 @@ var DinnerView3 = function (container, model) {
 		var pris = pris + dishes[0].ingredients[x].price;
 	};
 
-	model.addToPending(dishes[0].id);
+	var guests = "JA";
 
-	//CONTENT
-	//Visar det valda receptet
-	this.dishDisplay.append("<div class="+'"'+"dishName"+'"'+">"+"<h3>"+dishes[0].name+"</h3>"+"</div>"+
-		"<img src="+'"'+"images/"+dishes[0].image+'"'+"id="+'"'+"image"+'"'+">"
-		+"<div class="+'"'+"description"+'"'+">"+"<p>"+dishes[0].description+"</p>"+"</div>");
+	this.name = null;
+	this.image = null;
+	this.description = null;
+	this.selDish = null;
+
+	this.showDish = function (name) {
+		this.selDish = model.getDish(name);
+		console.log("sel", this.selDish);
+		this.namn = this.selDish.name;
+		this.image = this.selDish.image;
+		this.description = this.selDish.description;
+	}
+
+	this.guest = model.getNumberOfGuests();
+
+
+	this.dishDisplay.append("<div class="+'"'+"dishName"+'"'+">"+"<h3>"+this.namn+"</h3>"+"</div>"+
+		"<img src="+'"'+"images/"+this.image+'"'+"id="+'"'+"image"+'"'+">"
+		+"<div class="+'"'+"description"+'"'+">"+"<p>"+this.description+"</p>"+"</div>");
  
-	//Skriver ut receptet, men pris och kvantitet m.m.
-	//SAKNAR- om quantity = ' ', skriv ut också
-	var guests = model.getNumberOfGuests();
-	this.tableHeading.append("<h2>"+"Recipe for "+guests+" people"+"</h2>");
-	for(x in dishes[0].ingredients){
+	this.tableHeading.append("<h2>"+"Recipe for "+"<span id="+'"'+"guests"+'"'+"></span>"+" people"+"</h2>");
+
+	this.recipeCost.html("<div>"+"SEK "+pris*this.guest+"</div>");
+
+	this.update = function(){
+		this.guest = model.getNumberOfGuests();
+		console.log(document.getElementById("guests"));
+		document.getElementById("guests").innerHTML = this.guest;
+		console.log("Gu");
+	};
+
+	this.showDish('French toast');
+	model.addObserver(this);
+	this.update();
+
+	for(x in this.selDish.ingredients){
 	
-		this.quantity.append("<div>"+dishes[0].ingredients[x].quantity*guests+"</div>");
-		if(dishes[0].ingredients[x].unit == ''){
+		this.quantity.append("<div>"+this.selDish.ingredients[x].quantity*this.guest+"</div>");
+		if(this.selDish.ingredients[x].unit == ''){
 			this.unit.append("<div>"+'st'+"</div>");
 		}
 		else{
-		this.unit.append("<div>"+dishes[0].ingredients[x].unit+"</div>");
+		this.unit.append("<div>"+this.selDish.ingredients[x].unit+"</div>");
 	}
-		this.ingredients.append("<div>"+dishes[0].ingredients[x].name+"</div>");
-		this.price.append("<div>"+"SEK "+dishes[0].ingredients[x].price*guests+"</div>");
+		this.ingredients.append("<div>"+this.selDish.ingredients[x].name+"</div>");
+		this.price.append("<div>"+"SEK "+this.selDish.ingredients[x].price*this.guest+"</div>");
 	};
 
 	//Skriver ut totalt pris på valda receptet
-	this.recipeCost.html("<div>"+"SEK "+pris*guests+"</div>");
 
 	//Skriver ut preparation-instructions
 	this.preparation.append("<div>"+dishes[0].description+"</div>");
-
-	//Skriver ut totalt pris i sidomenyn
-
 	
 }

@@ -1,11 +1,13 @@
-var ViewRouter = function (container, model) {
+var MainView = function (container, model) {
 
 	this.container = container;
 
 	this.dinnerView1 = new DinnerView1($("#page-1"), model);
-	var dinnerView3 = new DinnerView3($("#page-3"), model);
+	this.dinnerView3 = new DinnerView3($("#page-3"), model);
 // 	var dinnerView4 = new DinnerView4($("#page-4"), model);
 //	var dinnerView5 = new DinnerView5($("#page-5"), model);
+
+	console.log("HEJ")
 
 	var menuView = new MenuView($("#menu-column"), model);
 
@@ -13,11 +15,10 @@ var ViewRouter = function (container, model) {
 
 	$("#page-3").hide();
 
-	this.display = function(){
+	this.display = function(message){
 		$("#page-1").hide();
-		$("#page-2").show();
-	};
-
-
+		$("#page-3").show();
+		console.log(message)
+	};	
 
 };

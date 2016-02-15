@@ -13,14 +13,7 @@ var MenuView = function (container, model) {
 	this.tillagd = container.find("#tillagd");
 	this.borttagen = container.find("#borttagen");
 
-	//data för att lägga till rätter i menyn samt antal personer
-	this.tillagd.html(model.addDishToMenu(1));
-	this.tillagd.html(model.addDishToMenu(201));
-	this.tillagd.html(model.addDishToMenu(100));
-
 	this.pending = model.returnPending();
-//	this.pending = (model.addToPending(2));
-
 
 //SIDOMENY
 	var dishes = model.getAllDishes('main dish');
@@ -35,6 +28,7 @@ var MenuView = function (container, model) {
 	var pendingIngredList = model.getDishIngredients('pending');
 
 	this.update = function(){
+		console.log("I update meny")
 
 	this.numberOfGuests.html(model.getNumberOfGuests());
 
@@ -77,21 +71,18 @@ var MenuView = function (container, model) {
 };
 
 
-	if(fullMenu.starter.length !== 0){
-	this.menuDish.append("<tr id="+'"'+"starterTr"+'"'+"><td id="+'"'+"starterName"+'"'+"></td><td id="+'"'+"starterPrice"+'"'+"></td>"+
+
+this.menuDish.append("<tr id="+'"'+"starterTr"+'"'+"><td id="+'"'+"starterName"+'"'+"></td><td id="+'"'+"starterPrice"+'"'+"></td>"+
 		"<td><button class="+'"'+"btn removebtn"+'"'+"id="+'"'+"removeStarter"+'"'+">X</button></td></tr>");
-	}
-	if(fullMenu.main.length !== 0){
-	this.menuDish.append("<tr id="+'"'+"mainTr"+'"'+"><td id="+'"'+"mainName"+'"'+"></td><td id="+'"'+"mainPrice"+'"'+"></td>"+
+
+this.menuDish.append("<tr id="+'"'+"mainTr"+'"'+"><td id="+'"'+"mainName"+'"'+"></td><td id="+'"'+"mainPrice"+'"'+"></td>"+
 		"<td><button class="+'"'+"btn removebtn"+'"'+"id="+'"'+"removeMain"+'"'+">X</button></td></tr>");
-	}
-	if(fullMenu.dessert.length !== 0){
-	this.menuDish.append("<tr id="+'"'+"dessertTr"+'"'+"><td id="+'"'+"dessertName"+'"'+"></td><td id="+'"'+"dessertPrice"+'"'+"></td>"+
+
+this.menuDish.append("<tr id="+'"'+"dessertTr"+'"'+"><td id="+'"'+"dessertName"+'"'+"></td><td id="+'"'+"dessertPrice"+'"'+"></td>"+
 		"<td><button class="+'"'+"btn removebtn"+'"'+"id="+'"'+"removeDessert"+'"'+">X</button></td></tr>");
-	}
 
 
-	this.menuDish.append("<tr id="+'"'+"pendingRow"+'"'+"><td id="+'"'+"pendingName"+'"'+"></td><td id="+'"'+"pendingPrice"+'"'+"></td>")
+this.menuDish.append("<tr id="+'"'+"pendingRow"+'"'+"><td id="+'"'+"pendingName"+'"'+"></td><td id="+'"'+"pendingPrice"+'"'+"></td>")
 
 
 //	if((fullMenu.starter.length == 0 || fullMenu.main.length == 0 || fullMenu.dessert.length == 0) && pending.length==0){
@@ -116,6 +107,7 @@ var MenuView = function (container, model) {
 	this.totalCost = container.find("#totalCost")
 
 	model.addObserver(this);
+	console.log("add meny")
 	this.update();
 
 };

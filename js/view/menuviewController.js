@@ -1,5 +1,5 @@
 //ExampleViewController Object constructor
-var DinnerViewController = function(view, model ) {
+var menuviewController = function(view, model ) {
  
  view.container.find("#plusGuest").click( function()
  	{model.setNumberOfGuests(model.getNumberOfGuests()+1);}

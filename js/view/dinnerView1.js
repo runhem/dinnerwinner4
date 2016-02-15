@@ -12,54 +12,68 @@ var DinnerView1 = function (container, model) {
 	this.dishes = container.find("#dishes");
 
 //CONTENT. Hämtar alla rätter. Skapar divar som visar innehållet, sätter style till display:none så ingen visas
-	this.starters = (model.getAllDishes('starter'));
-	this.mains = (model.getAllDishes('main dish'));
-	this.desserts = (model.getAllDishes('dessert'));
+	this.starter = (model.getAllDishes('starter'));
+	this.main = (model.getAllDishes('main dish'));
+	this.dessert = (model.getAllDishes('dessert'));
 
+	this.inputValue = container.find(".form-control");
 
-	for(var x=0, y=this.starters.length;x<y;x++){
+	for(var x=0, y=this.starter.length;x<y;x++){
 		this.dishes.append(
-			"<div class="+'"'+"col-md-3 dish starters"+'"'+"style="+'"'+"display:none"+'"'+">"+
-			"<img src="+'"'+"images/"+this.starters[x].image+'"'+"id="+'"'+"image"+'"'+">"
-			+"<h5 id="+'"'+"title"+'"'+">"+this.starters[x].name+"</h5>"
-			+"<div id="+'"'+"description"+'"'+">"+"<p>"+this.starters[x].description.slice(0,86)+"..."+"</p>"+"</div>"
+			"<div class="+'"'+"col-md-3 dish starter"+'"'+"id="+'"'+this.starter[x].name+'"'+"style="+'"'+"display:none"+'"'+">"+
+			"<img src="+'"'+"images/"+this.starter[x].image+'"'+"id="+'"'+"image"+'"'+">"
+			+"<h5 id="+'"'+"title"+'"'+">"+this.starter[x].name+"</h5>"
+			+"<div id="+'"'+"description"+'"'+">"+"<p>"+this.starter[x].description.slice(0,86)+"..."+"</p>"+"</div>"
 			+"</div>");
 	};
 
-	for(var x=0, y=this.mains.length;x<y;x++){
+	for(var x=0, y=this.main.length;x<y;x++){
 		this.dishes.append(
-			"<div class="+'"'+"col-md-3 dish mains"+'"'+"style="+'"'+"display:none"+'"'+">"+
-			"<img src="+'"'+"images/"+this.mains[x].image+'"'+"id="+'"'+"image"+'"'+">"
-			+"<h5 id="+'"'+"title"+'"'+">"+this.mains[x].name+"</h5>"
-			+"<div id="+'"'+"description"+'"'+">"+"<p>"+this.mains[x].description.slice(0,86)+"..."+"</p>"+"</div>"
+			"<div class="+'"'+"col-md-3 dish main"+'"'+"id="+'"'+this.main[x].name+'"'+"style="+'"'+"display:none"+'"'+">"+
+			"<img src="+'"'+"images/"+this.main[x].image+'"'+"id="+'"'+"image"+'"'+">"
+			+"<h5 id="+'"'+"title"+'"'+">"+this.main[x].name+"</h5>"
+			+"<div id="+'"'+"description"+'"'+">"+"<p>"+this.main[x].description.slice(0,86)+"..."+"</p>"+"</div>"
 			+"</div>");
 	};
 
-	for(var x=0, y=this.desserts.length;x<y;x++){
+	for(var x=0, y=this.dessert.length;x<y;x++){
 		this.dishes.append(
-			"<div class="+'"'+"col-md-3 dish desserts"+'"'+"style="+'"'+"display:none"+'"'+">"+
-			"<img src="+'"'+"images/"+this.desserts[x].image+'"'+"id="+'"'+"image"+'"'+">"
-			+"<h5 id="+'"'+"title"+'"'+">"+this.desserts[x].name+"</h5>"
-			+"<div id="+'"'+"description"+'"'+">"+"<p>"+this.desserts[x].description.slice(0,86)+"..."+"</p>"+"</div>"
+			"<div class="+'"'+"col-md-3 dish dessert"+'"'+"id="+'"'+this.dessert[x].name+'"'+"style="+'"'+"display:none"+'"'+">"+
+			"<img src="+'"'+"images/"+this.dessert[x].image+'"'+"id="+'"'+"image"+'"'+">"
+			+"<h5 id="+'"'+"title"+'"'+">"+this.dessert[x].name+"</h5>"
+			+"<div id="+'"'+"description"+'"'+">"+"<p>"+this.dessert[x].description.slice(0,86)+"..."+"</p>"+"</div>"
 			+"</div>");
 	};
-
 
 	this.displayDishes = function(button){
 	if(button){
 		for(var i=0, x=document.getElementsByClassName(this.active).length;i<x;i++){
 			document.getElementsByClassName(this.active)[i].style.display = 'none';}
 		this.active = button;
-		console.log("I button")
 	}
 	else{
 		for(var i=0, x=document.getElementsByClassName(this.active).length;i<x;i++){
 		document.getElementsByClassName(this.active)[i].style.display = 'block';
 		};
-	console.log("else")
 	}
-
 	};
+
+	this.searchDishes = function(filter){
+	var result = model.getAllDishes(this.active, filter);
+	var alex = [];
+	for(var j=0, y=result.length;j<y;j++){
+		for(var i=0, x=document.getElementsByClassName(this.active).length;i<x;i++){
+		document.getElementsByClassName(this.active)[i].style.display = 'none';
+			if(document.getElementsByClassName(this.active)[i].id == result[j].name){
+			alex.push(document.getElementsByClassName(this.active)[i]);
+			}
+		}
+	}
+	console.log(alex);
+	for(var k=0, z=alex.length;k<z;k++){
+		alex[k].style.display = 'block';
+	};
+};
 
 	this.update = function(){
 	this.displayDishes();
@@ -69,7 +83,7 @@ var DinnerView1 = function (container, model) {
 	
 // Väljer vilken av typerna som är aktiv och i update kallas sedan på en funktion som sätter style.display=block. 
 
-	this.active = "desserts";
+	this.active = "starter";
 	model.addObserver(this);
 	this.update();
 

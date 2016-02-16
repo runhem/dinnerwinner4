@@ -1,7 +1,6 @@
 var MainView = function (container, model) {
 
 	this.container = container;
-
 	this.dinnerView1 = new DinnerView1($("#page-1"), model);
 	this.dinnerView3 = new DinnerView3($("#page-3"), model);
  	this.dinnerView4 = new DinnerView4($("#page-4"), model);

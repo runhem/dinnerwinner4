@@ -20,7 +20,7 @@ var DinnerView1 = function (container, model) {
 
 	for(var x=0, y=this.starter.length;x<y;x++){
 		this.dishes.append(
-			"<div class="+'"'+"col-md-3 dish starter"+'"'+"id="+'"'+this.starter[x].name+'"'+"style="+'"'+"display:none"+'"'+">"+
+			"<div class="+'"'+"col-md-3 dish starter"+'"'+"id="+'"'+this.starter[x].name+'"'+"style="+'"'+"display:block"+'"'+">"+
 			"<img src="+'"'+"images/"+this.starter[x].image+'"'+"id="+'"'+"image"+'"'+">"
 			+"<h5 id="+'"'+"title"+'"'+">"+this.starter[x].name+"</h5>"
 			+"<div id="+'"'+"description"+'"'+">"+"<p>"+this.starter[x].description.slice(0,86)+"..."+"</p>"+"</div>"
@@ -29,7 +29,7 @@ var DinnerView1 = function (container, model) {
 
 	for(var x=0, y=this.main.length;x<y;x++){
 		this.dishes.append(
-			"<div class="+'"'+"col-md-3 dish main"+'"'+"id="+'"'+this.main[x].name+'"'+"style="+'"'+"display:none"+'"'+">"+
+			"<div class="+'"'+"col-md-3 dish main"+'"'+"id="+'"'+this.main[x].name+'"'+"style="+'"'+"display:block"+'"'+">"+
 			"<img src="+'"'+"images/"+this.main[x].image+'"'+"id="+'"'+"image"+'"'+">"
 			+"<h5 id="+'"'+"title"+'"'+">"+this.main[x].name+"</h5>"
 			+"<div id="+'"'+"description"+'"'+">"+"<p>"+this.main[x].description.slice(0,86)+"..."+"</p>"+"</div>"
@@ -38,53 +38,53 @@ var DinnerView1 = function (container, model) {
 
 	for(var x=0, y=this.dessert.length;x<y;x++){
 		this.dishes.append(
-			"<div class="+'"'+"col-md-3 dish dessert"+'"'+"id="+'"'+this.dessert[x].name+'"'+"style="+'"'+"display:none"+'"'+">"+
+			"<div class="+'"'+"col-md-3 dish dessert"+'"'+"id="+'"'+this.dessert[x].name+'"'+"style="+'"'+"display:block"+'"'+">"+
 			"<img src="+'"'+"images/"+this.dessert[x].image+'"'+"id="+'"'+"image"+'"'+">"
 			+"<h5 id="+'"'+"title"+'"'+">"+this.dessert[x].name+"</h5>"
 			+"<div id="+'"'+"description"+'"'+">"+"<p>"+this.dessert[x].description.slice(0,86)+"..."+"</p>"+"</div>"
 			+"</div>");
 	};
 
-	this.displayDishes = function(button){
-	if(button){
-		for(var i=0, x=document.getElementsByClassName(this.active).length;i<x;i++){
-			document.getElementsByClassName(this.active)[i].style.display = 'none';}
-		this.active = button;
-	}
+	this.displayDishes = function(dishType){
+		if(dishType){
+		for(var i=0, x=document.getElementsByClassName("dish").length;i<x;i++){
+		document.getElementsByClassName("dish")[i].style.display = 'none';}
+		
+		for(var i=0, x=document.getElementsByClassName(dishType).length;i<x;i++){
+		document.getElementsByClassName(dishType)[i].style.display = 'block';}
+
+		}
 	else{
-		for(var i=0, x=document.getElementsByClassName(this.active).length;i<x;i++){
-		document.getElementsByClassName(this.active)[i].style.display = 'block';
-		};
-	}
+	for(var i=0, x=document.getElementsByClassName("dish").length;i<x;i++){
+		document.getElementsByClassName("dish")[i].style.display = 'block';}
+
+}
 	};
 
 	this.searchDishes = function(filter){
-	var result = model.getAllDishes(this.active, filter);
+	var dishTypes = ["starter", "main dish", "dessert"];
+
 	var alex = [];
-	for(var j=0, y=result.length;j<y;j++){
-		for(var i=0, x=document.getElementsByClassName(this.active).length;i<x;i++){
-		document.getElementsByClassName(this.active)[i].style.display = 'none';
-			if(document.getElementsByClassName(this.active)[i].id == result[j].name){
-			alex.push(document.getElementsByClassName(this.active)[i]);
+	for(var i=0, x=document.getElementsByClassName("dish").length;i<x;i++){
+		document.getElementsByClassName("dish")[i].style.display = 'none';}
+	for (type in dishTypes){
+	
+
+	var result = model.getAllDishes(dishTypes[type], filter);
+		for(var j=0, y=result.length;j<y;j++){
+		for(var i=0, x=document.getElementsByClassName(dishTypes[type]).length;i<x;i++){
+			if(document.getElementsByClassName(dishTypes[type])[i].id == result[j].name){
+			alex.push(document.getElementsByClassName(dishTypes[type])[i]);
 			}
 		}
 	}
-	console.log(alex);
+	}
 	for(var k=0, z=alex.length;k<z;k++){
 		alex[k].style.display = 'block';
 	};
 };
 
-	this.update = function(){
-	this.displayDishes();
-	};
 
-	
-// Väljer vilken av typerna som är aktiv och i update kallas sedan på en funktion som sätter style.display=block. 
-
-	this.active = "starter";
-	model.addObserver(this);
-	this.update();
 
 
 };

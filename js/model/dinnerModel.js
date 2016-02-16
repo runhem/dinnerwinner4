@@ -94,7 +94,6 @@ var DinnerModel = function() {
 				menu[x].image = "none.jpg";
 			}
 		}
-		console.log(menu.starter.name)
 		return menu;
 		notifyObservers();
 		console.log(menu);

@@ -92,6 +92,7 @@ var DinnerModel = function() {
 			if (!(menu[x].name)){
 				menu[x].name = "None selected";
 				menu[x].image = "none.jpg";
+				menu[x].price = 0;
 			}
 		}
 		return menu;

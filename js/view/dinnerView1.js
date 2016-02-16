@@ -67,7 +67,7 @@ var DinnerView1 = function (container, model) {
 	this.searchDishes = function(filter){
 	var dishTypes = ["starter", "main dish", "dessert"];
 
-	var alex = [];
+	var storeDishes = [];
 	for(var i=0, x=document.getElementsByClassName("dish").length;i<x;i++){
 		document.getElementsByClassName("dish")[i].style.display = 'none';}
 	for (type in dishTypes){
@@ -77,13 +77,13 @@ var DinnerView1 = function (container, model) {
 		for(var j=0, y=result.length;j<y;j++){
 		for(var i=0, x=document.getElementsByClassName(dishTypes[type]).length;i<x;i++){
 			if(document.getElementsByClassName(dishTypes[type])[i].id == result[j].name){
-			alex.push(document.getElementsByClassName(dishTypes[type])[i]);
+			storeDishes.push(document.getElementsByClassName(dishTypes[type])[i]);
 			}
 		}
 	}
 	}
-	for(var k=0, z=alex.length;k<z;k++){
-		alex[k].style.display = 'block';
+	for(var k=0, z=storeDishes.length;k<z;k++){
+		storeDishes[k].style.display = 'block';
 	};
 };
 

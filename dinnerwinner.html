@@ -23,8 +23,7 @@
   <!-- MENU --> 
 
     <div id="menu-column" class="col-md-2">
-      
-      <div class="menu-content col-md-12">
+      <div class="col-md-12">
         <h2>My Dinner </h2>
         <div id="number-of-guests" class="col-md-8">
           People <span id="numbGuest"></span></div>
@@ -32,7 +31,7 @@
           <button id="plusGuest" class="btn btnGuest">+</button>
           <button id="minusGuest" class="btn btnGuest">-</button>
         </div>
-      </div> <!--menu content-->
+      </div> <!-- col md 12 -->
 
     <!-- MENU TABLE --> 
 
@@ -48,11 +47,11 @@
           <tbody id="dinnerCost"></tbody>
         </table>
       
-      <div class="menu-content col-md-12">
+      <div class="col-md-12">
         <button class="btn btn-default" id="confirm-dinner" type="button" style="display: block; margin: 0 auto;">Confirm Dinner</button>
       </div> <!-- menu content -->
     
-    </div> <!-- menu column-->
+    </div> <!-- col md 12 -->
 
 
     <!-- PAGE 1 --> 
@@ -64,7 +63,7 @@
   		<h2>Select Dish</h2>
       <div id="line-separator1"> </div>
       <div class="row">
-		  <div class="col-lg-6 input group">
+		  <div class="col-lg-6 input-group">
         <input type="text" class="form-control" placeholder="Search for...">
           <span class="input-group-btn">
           <button class="btn btn-default" id="search" type="button">Search</button>
@@ -86,81 +85,97 @@
       </div> <!-- row -->
     </div> <!-- search bar -->
 
-      <!-- WHERE THE DISHES DISPLAYS :)-->
+    <!-- WHERE THE DISHES DISPLAYS :)-->
 
-  	<div id="dish-bar" class="col-md-12">
-      <div id="dishes"></div>
-    </div> <!--dish-bar -->
-    
-      </div> <!-- content column-->
+      <div id="dish-bar" class="col-md-12">
+       <div id="dishes"></div>
+      </div> <!--dish-bar -->
+    </div> <!-- content column-->
 
-      <div id="page-3" class="col-md-10 content-column">
-        <div class="col-md-6">
-          <div id="dish-display"></div>
-            <div id="button-row-goBack">
-              <button class="btn btn-default" type="button" id="back-2-select">Back to Select Dish</button>
-            </div>
-          </div>
+    <!-- END OF PAGE 1 -->
+
+    <!-- TIME FOR PAGE 3 WOHO --> 
+
+    <div id="page-3" class="col-md-10 content-column">
+      <div class="col-md-6">
+        <div id="dish-display"></div>
+        <div id="button-row-goBack">
+          <button class="btn btn-default" type="button" id="back-2-select">Back to Select Dish</button>
+        </div> <!-- button row goBack --> 
+      </div>
 
 
-        <div id="ingridient-display" class="col-md-6">
-          <span id="tableHeading"></span>
-          <div class="line-separator"> </div>
-          <table class="table" id="ingridient-list">
-            <tbody id="quantity">
-            </tbody>
-          </table>
-          <div id="line-separator2"> </div>
-          <div class="recipeCost">
-            <button class="btn btn-default" type="button" id="confirm-dish">Confirm Dish</button>
-            <span id="recipeCost"></span>
-          </div>
+      <div id="ingridient-display" class="col-md-6">
+        <span id="tableHeading"></span>
+        <div class="line-separator"> </div>
 
-        </div> <!--ingridient-display-->
+        <!-- TABLE THAT SHOWS ALL INGREDIENTS --> 
+        <table class="table" id="ingridient-list">
+          <tbody id="quantity">
+          </tbody>
+        </table>
+        <div id="line-separator2"> </div>
+        <div class="recipeCost">
+          <button class="btn btn-default" type="button" id="confirm-dish">Confirm Dish</button>
+          <span id="recipeCost"></span>
+        </div>
 
-        <div id="preparation-display" class="col-md-12">
-          <h3>Preparations</h3>
-        </div><!--preparations-->
-      
-      </div> <!-- PAGE 3 -->
+      </div> <!--ingridient-display-->
 
-      <!-- NAVIGATION BAR --> 
+      <div id="preparation-display" class="col-md-12">
+        <h3>Preparations</h3>
+      </div><!--preparations-->
+    </div> <!-- PAGE 3 -->
+
+    <!-- END OF PAGE 3 -->
+
+    <!-- NAVIGATION BAR --> 
 
     <div class="col-md-12" id="navigation-bar">
+    <!-- LEFT PART OF NAVIGATION BAR --> 
       <div class="col-md-6" id="left-navigation">
-      <p id="mydinner"> My Dinner: <span id="numberOfGuests">people</span></p>   <!-- ANTAL GÄSTER SKA IN HÄR  --> 
+      <p id="mydinner"> My Dinner: <span id="numberOfGuests">people</span></p>
       </div> <!-- left--> 
 
+    <!-- RIGHT PART OF NAVIGATION BAR --> 
       <div class="col-md-6" id="right-navigation">
         <button type="button" class="btn btn-default" id="back-2-edit"></span>Go back and edit dinner</button> 
       </div> <!-- right -->
-    </div><!-- navigation -->
 
-    <!-- MAIN CONTENT --> 
+    </div><!-- navigation bar-->
 
+    <!-- END OF NAVIGATION BAR --> 
+
+    <!-- PAGE 4 --> 
     <div id="page-4" class="col-md-12 content-column">
-    <div class="row" style="height: 100%;">
-      <div id="menu-display" class="col-md-6 col-md-offset-3">
+      <div class="row" style="height: 100%;">
+        <div id="menu-display" class="col-md-6 col-md-offset-3">
           <div id="dishes4"></div>
-      </div> <!--menu display --> 
-      <div class="col-md-3" id="display-price">
-        <span id="totalPrice"></span>
-      </div>
-    </div>
+        </div> <!--menu display -->
+
+        <div class="col-md-3" id="display-price">
+          <span id="totalPrice"></span>
+        </div> <!-- display price -->
+      </div> <!-- ROW -->
             
-    <div class="row" style="text-align:center;">
-      <div class="line-separator3" id="line-separator-p3"></div>          
-      <button class="btn btn-default" type="button" id="print-full-recipe">Print Full Recipe</button>
-    </div> <!-- row --> 
+      <div class="row" style="text-align:center;">
+        <div class="line-separator3" id="line-separator-p3"></div>          
+        <button class="btn btn-default" type="button" id="print-full-recipe">Print Full Recipe</button>
+      </div> <!-- row --> 
     </div> <!-- content column --> 
+
+    <!-- END OF PAGE 4 --> 
+
+    <!-- PAGE 5 --> 
 
     <div class="col-md-12 content-column5" id="page-5">
       <div id="dish-summary-display"> </div>
     </div> <!-- dish summary --> 
 
-    </div> <!-- row -->
+    <!-- END OF PAGE 5-->
 
-    </div> <!-- container -->
+    </div> <!-- row -->
+  </div> <!-- container -->
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery.js"></script>

@@ -276,18 +276,6 @@ font-style:italic;
   margin-right:10%;
 }
 
-.row-centered {
-text-align:center;
-width:100%;
-}
-
-.col-centered{
-display:inline-block;
-float:none;
-text-align:left;
-min-width:50%;
-}
-
 .price{
   font-size:10pt;
   padding:0px;
@@ -302,6 +290,16 @@ min-width:50%;
   margin-bottom:0px;
   padding-bottom:0px;
   }
+
+.confirmed-dish{
+  height: 300px;
+  width: 170px;
+  border: solid white;
+  padding:0px;
+  margin:2%;
+  text-align: center;
+}
+
 /* SLUT PÅ PAGE 4 */ 
 
 /* PAGE 5 */ 

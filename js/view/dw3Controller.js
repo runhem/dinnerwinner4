@@ -1,7 +1,7 @@
 var Dw3Controller = function(view, model) {
 	
 	view.container.find("#confirm-dish").click( function(){
-    	model.addDishToMenu(1);
+    	model.addDishToMenu();
 		view.display("page-1");
 	}
 	);

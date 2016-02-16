@@ -162,25 +162,20 @@ var DinnerModel = function() {
 		return dishIngredientList;
 	}
 
-	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
+	//Adds the passed dish to the menu from list pending. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	//FUNKAR
-	this.addDishToMenu = function(id) {
-		this.removeFromPending(id);
-		for(key in dishes){
-			if(dishes[key].id == id) {
-				if(dishes[key].type == 'starter'){
-				menu.starter = dishes[key];
-				/*console.log(menu);*/
+	this.addDishToMenu = function() {
+				if(pending[0].type == 'starter'){
+				menu.starter = pending[0];
 				}
-				if(dishes[key].type == 'main dish'){
-					menu.main = dishes[key];
+				if(pending[0].type == 'main dish'){
+					menu.main = pending[0];
 				}
-				if(dishes[key].type == 'dessert'){
-					menu.dessert = dishes[key];
-					}
+				if(pending[0].type == 'dessert'){
+					menu.dessert = pending[0];
 				}
-			}
+		this.removeFromPending();
 		this.notifyObservers();
 	};
 

@@ -11,7 +11,7 @@ var DinnerView1 = function (container, model) {
 	//containers för main content 
 	this.dishes = container.find("#dishes");
 
-//CONTENT. Hämtar alla rätter. Skapar divar som visar innehållet, sätter style till display:none så ingen visas
+//CONTENT. Hämtar alla rätter. Skapar divar som visar innehållet, sätter style till display:block så att alla visas som default
 	this.starter = (model.getAllDishes('starter'));
 	this.main = (model.getAllDishes('main dish'));
 	this.dessert = (model.getAllDishes('dessert'));
@@ -45,6 +45,8 @@ var DinnerView1 = function (container, model) {
 			+"</div>");
 	};
 
+
+	//Metod displayDishes som visar rätter beroende på vilken typ
 	this.displayDishes = function(dishType){
 		if(dishType){
 		for(var i=0, x=document.getElementsByClassName("dish").length;i<x;i++){
@@ -61,6 +63,7 @@ var DinnerView1 = function (container, model) {
 }
 	};
 
+	//Metod som söker bland rätter och sedan visar de rätter som hittats och gömmer de andra
 	this.searchDishes = function(filter){
 	var dishTypes = ["starter", "main dish", "dessert"];
 

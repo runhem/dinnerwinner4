@@ -271,7 +271,6 @@ font-style:italic;
   height:0px;
   border-bottom:1px solid #000000;
   margin-bottom:1%;
-  margin-top:10%;
   margin-left:10%;
   margin-right:10%;
 }
@@ -298,6 +297,14 @@ font-style:italic;
   padding:0px;
   margin:2%;
   text-align: center;
+}
+
+#row4{
+  height:50%;
+}
+
+#page-4{
+  width:100%;
 }
 
 /* SLUT PÅ PAGE 4 */ 

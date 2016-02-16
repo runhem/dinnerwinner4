@@ -15,4 +15,6 @@ $(function() {
 	var dw3Controller = new Dw3Controller(mainView, model);
 	var navController = new navigationViewController(mainView, model);
 	var menuController = new menuviewController(mainView, model);
+	var headerController = new HeaderController(mainView, model);
+
 });

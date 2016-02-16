@@ -8,7 +8,6 @@ var MainView = function (container, model) {
 	this.navigationView = new NavigationView($("#navigation-bar"), model);
 	this.dinnerView5 = new DinnerView5($("#page-5"), model);
 
-
 	var menuView = new MenuView($("#menu-column"), model);
 
 	this.display = function(message){
@@ -18,7 +17,6 @@ var MainView = function (container, model) {
 		$("#page-4").hide();
 		$("#navigation-bar").hide();
 		$("#page-5").hide();
-
 
 		if(message == "page-1"){
 		$("#page-1").show();

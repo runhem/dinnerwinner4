@@ -14,23 +14,27 @@ var DinnerView3 = function (container, model) {
 
 	//räknar ut pris på ingredienser
 	var dishes = model.getAllDishes('main dish');
+//	var pending = model.returnPending();
+//	console.log(pending);
+
+//	this.selDishis = pending.id; //hämta värde
 
 
-	var guests = "JA";
+	this.update = function(){
+	this.pending = model.returnPending();
+	this.dishDisplay.empty();
+this.tableHeading.empty();
 
-	selDish = 'French '
-
-	this.selDish = model.getDish(1);
+	if(this.pending.length !== 0){
+	this.selDish = model.getDish(this.pending[0].id);
 	this.namn = this.selDish.name;
 	this.image = this.selDish.image;
 	this.description = this.selDish.description;
 	this.guest = model.getNumberOfGuests();
-	this.price = model.getTotalDishPrice(1);
+	this.price = model.getTotalDishPrice(this.pending[0].id);
 
 
 	this.guest = model.getNumberOfGuests();
-	this.spansk = [];
-
 
 	this.dishDisplay.append("<div class="+'"'+"dishName"+'"'+">"+"<h3>"+this.namn+"</h3>"+"</div>"+
 		"<img src="+'"'+"images/"+this.image+'"'+"id="+'"'+"image"+'"'+">"
@@ -38,6 +42,14 @@ var DinnerView3 = function (container, model) {
  
 	this.tableHeading.append("<h2>"+"Recipe for "+"<span id="+'"'+"guests"+'"'+"></span>"+" people"+"</h2>");
 
+
+		this.guest = model.getNumberOfGuests();
+		document.getElementById("guests").innerHTML = this.guest;
+		this.quantity.empty();
+		this.displayIn();
+		this.recipeCost.html("<td>"+"SEK "+this.price+"</td>");
+	}
+	};
 
 	this.displayIn = function(){
 		for(x in this.selDish.ingredients){
@@ -54,17 +66,6 @@ var DinnerView3 = function (container, model) {
 		this.quantity.append("</tr>");
 		}
 	};
-
-
-
-	this.update = function(){
-		this.guest = model.getNumberOfGuests();
-		document.getElementById("guests").innerHTML = this.guest;
-		this.quantity.empty();
-		this.displayIn();
-		this.recipeCost.html("<td>"+"SEK "+this.price+"</td>");
-	};
-
 	model.addObserver(this);
 	this.update();
 

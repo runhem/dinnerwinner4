@@ -67,7 +67,7 @@ var MenuView = function (container, model) {
 	};
 
 	allIngredList = model.getAllIngredients();
- 	this.totalCost.html(model.getTotalMenuPrice(allIngredList)+" SEK");
+ 	this.totalCost.html((model.getTotalMenuPrice(allIngredList)+model.getPendingPrice())+" SEK");
 };
 
 

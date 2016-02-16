@@ -45,11 +45,14 @@ var DinnerModel = function() {
 
 	this.getPendingPrice = function(){	
 		var pendingPrice = 0;
+		if (pending.length !== 0){
 		for(x in pending[0].ingredients){
 			pendingPrice = pendingPrice + pending[0].ingredients[x].price;
 		};
 		pendingPrice = pendingPrice*this.getNumberOfGuests();
 		return pendingPrice;
+	}
+	else{return 0}
 	}
 
 	//TODO Lab 2 implement the data structure that will hold number of guest
@@ -121,9 +124,6 @@ var DinnerModel = function() {
 			}
 		var personer = this.getNumberOfGuests();
 		totalPrice = pris * personer
-
-		if(pending.length ==! 0){
-			 totalPrice = totalPrice + this.getPendingPrice();}
 		return totalPrice
 		this.notifyObservers();
 	};

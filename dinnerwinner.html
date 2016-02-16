@@ -14,80 +14,83 @@
   <body>
   <div class="container">
 
-  	  <div class="page-header">
-  	    <h1>DINNER WINNER<small> From the best chefs in the world directly into your kitchen.</small></h1>
-      </div> <!-- page header --> 
+    <div class="page-header">
+      <h1>DINNER WINNER<small> From the best chefs in the world directly into your kitchen.</small></h1>
+    </div> <!-- page header --> 
 
-     <div class="row">
+    <div class="row">
 
-      <!-- CONTENT LEFT PART OF PAGE --> 
+  <!-- MENU --> 
 
-      <div id="menu-column" class="col-md-2">
-        <div class="menu-content col-md-12">
+    <div id="menu-column" class="col-md-2">
+      
+      <div class="menu-content col-md-12">
         <h2>My Dinner </h2>
-          <div id="number-of-guests" class="col-md-8">
+        <div id="number-of-guests" class="col-md-8">
           People <span id="numbGuest"></span></div>
-          <div class="col-md-4">
-            <button id="plusGuest" class="btn btnGuest">+</button>
-            <button id="minusGuest" class="btn btnGuest">-</button></div>
-        </div> <!--menu content-->
+        <div class="col-md-4">
+          <button id="plusGuest" class="btn btnGuest">+</button>
+          <button id="minusGuest" class="btn btnGuest">-</button>
+        </div>
+      </div> <!--menu content-->
+
+    <!-- MENU TABLE --> 
 
       <table class="table menu-table">
-            <thead>
-              <tr>
-                <th>Dish Name</th>
-                <th>Cost</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody id="menu-dish">
-            </tbody>
-            <tbody id="dinnerCost"></tbody>
+        <thead>
+          <tr>
+            <th>Dish Name</th>
+            <th>Cost</th>
+            <th></th>
+          </tr>
+        </thead>
+          <tbody id="menu-dish"></tbody>
+          <tbody id="dinnerCost"></tbody>
         </table>
       
       <div class="menu-content col-md-12">
         <button class="btn btn-default" id="confirm-dinner" type="button" style="display: block; margin: 0 auto;">Confirm Dinner</button>
-        </div> <!-- menu content -->
-      </div> <!-- menu column-->
+      </div> <!-- menu content -->
+    
+    </div> <!-- menu column-->
 
 
-      <!-- PAGE 1 --> 
-      <div id="page-1" class="col-md-10 content-column">
+    <!-- PAGE 1 --> 
+    <div id="page-1" class="col-md-10 content-column">
 
-      <!-- TOP PART OF RIGHT CONTENT --> 
-    	<div id="search-bar" class="col-md-12">
-    		<h2>Select Dish</h2>
-        <div id="line-separator1"> </div>
-        <div class="row">
-  		  <div class="col-lg-6">
+    <!-- SEARCH BAR --> 
 
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for...">
-            <span class="input-group-btn">
-            <button class="btn btn-default" id="search" type="button">Search</button>
-          </span>
-        </div>
-        </div>
+    <div id="search-bar" class="col-md-12">
+  		<h2>Select Dish</h2>
+      <div id="line-separator1"> </div>
+      <div class="row">
+		  <div class="col-lg-6 input group">
+        <input type="text" class="form-control" placeholder="Search for...">
+          <span class="input-group-btn">
+          <button class="btn btn-default" id="search" type="button">Search</button>
+        </span>
+      </div> <!-- input-group --> 
 
-  		  <div class="btn-group">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Select dish
-            <span class="caret"></span>
-          </button>
+      <!-- DROP DOWN MENY --> 
+  		<div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Select dish
+        <span class="caret"></span>
+      </button>
 
-          <ul class="dropdown-menu">
-    		    <li><a id="starter">Starter</a></li>
-            <li><a id="main">Main dish</a></li>
-    		    <li><a id="dessert">Dessert</a></li>
-          </ul>
-		    </div> <!-- btn group --> 
-      </div> <!-- search-bar -->
-    </div>
+        <ul class="dropdown-menu">
+    		 <li><a id="starter">Starter</a></li>
+         <li><a id="main">Main dish</a></li>
+         <li><a id="dessert">Dessert</a></li>
+        </ul>
+		  </div> <!-- btn group --> 
+      </div> <!-- row -->
+    </div> <!-- search bar -->
 
-      <!-- LOWER PART OF PAGE 1 -->
+      <!-- WHERE THE DISHES DISPLAYS :)-->
 
-  	  <div id="dish-bar" class="col-md-12">
-        <div id="dishes"></div>
-      </div> <!--dish-bar -->
+  	<div id="dish-bar" class="col-md-12">
+      <div id="dishes"></div>
+    </div> <!--dish-bar -->
     
       </div> <!-- content column-->
 
@@ -177,5 +180,6 @@
     <script src="js/view/dw3Controller.js"></script>
     <script src="js/view/menuviewController.js"></script>
     <script src="js/view/navigationViewController.js"></script>
+    <script src="js/view/headerController.js"></script>
   </body>
 </html>

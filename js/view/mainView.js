@@ -16,6 +16,12 @@ var MainView = function (container, model) {
 		$("#page-4").hide();
 		$("#navigation-bar").hide();
 		$("#page-5").hide();
+		$("#startPage").hide();
+		
+
+		if(message == "startPage"){
+		$("#startPage").show();
+		}
 
 		if(message == "page-1"){
 		$("#page-1").show();
@@ -38,6 +44,6 @@ var MainView = function (container, model) {
 		}
 
 	};
-	this.display("page-1");
+	this.display("startPage");
 
 };

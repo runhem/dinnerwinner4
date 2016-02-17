@@ -343,3 +343,41 @@ font-style:italic;
 
 /* SLUT PÅ PAGE 5 */
 
+/* STARTPAGE */
+ .container-start{
+      height:100%;
+      width:100%;
+      margin:0px;
+      padding:0px;
+      background-image: url("images/chilitime.jpeg");
+      background-size: cover;
+      color:white;
+    }
+
+     #info-start{
+      background-color:rgba(88,88,88,0.5);
+      margin-top:10%;
+      margin-left:1%;
+      padding-top:1%;
+      padding-left:2%;
+      color:white;
+    }
+
+    #info-start h2{
+      font-size:20pt;
+      padding-top:0px;
+      margin-top:2%;
+    }
+
+
+#line-separator{
+      height:0px;
+      border-bottom:1px solid white;
+      margin-bottom:1%;
+      margin-top:1%;
+    }
+
+    .btn-custom{
+      background-color: #6b6b6b;
+      margin-bottom:5%;
+    }

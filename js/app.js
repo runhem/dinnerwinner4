@@ -16,5 +16,6 @@ $(function() {
 	var navController = new navigationViewController(mainView, model);
 	var menuController = new menuviewController(mainView, model);
 	var headerController = new HeaderController(mainView, model);
+	var startViewController = new StartViewController(mainView, model);
 
 });

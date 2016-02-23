@@ -17,8 +17,10 @@ var DinnerView1 = function (container, model) {
 	this.dessert = (model.getAllDishes('dessert'));
 
 	this.inputValue = container.find(".form-control");
+
 	console.log(this.starter);
-	for(var x=0, y=this.starter.ResultCount; x<y;x++){
+
+/*	for(var x=0, y=this.starters.length;x<y;x++){
 		this.dishes.append(
 			"<div class="+'"'+"col-md-3 dish starter"+'"'+"id="+'"'+this.starter[x].name+'"'+"style="+'"'+"display:block"+'"'+">"+
 			"<img src="+'"'+"images/"+this.starter[x].image+'"'+"id="+'"'+"image"+'"'+">"
@@ -44,7 +46,7 @@ var DinnerView1 = function (container, model) {
 			+"<div id="+'"'+"description"+'"'+">"+"<p>"+this.dessert[x].description.slice(0,86)+"..."+"</p>"+"</div>"
 			+"</div>");
 	};
-
+*/
 
 	//Metod displayDishes som visar rätter beroende på vilken typ
 	this.displayDishes = function(dishType){
@@ -87,7 +89,27 @@ var DinnerView1 = function (container, model) {
 	};
 };
 
+	this.update = function(){
+		console.log("Testing testing hello")
+		console.log(model.starters);
 
 
+		this.starters = model.starters.Results;
 
+		for(var x=0, y=this.starters.length;x<y;x++){
+			console.log("adding a dish");
+
+			this.starters = model.starters.Results;
+
+			this.dishes.append(
+				"<div class="+'"'+"col-md-3 dish starter"+'"'+"id="+'"'+this.starters[x].Title+'"'+"style="+'"'+"display:block"+'"'+">"+
+				"<img src="+'"'+this.starters[x].ImageURL+'"'+"id="+'"'+"image"+'"'+">"
+				+"<h5 id="+'"'+"title"+'"'+">"+this.starters[x].Title+"</h5>"
+				//+"<div id="+'"'+"description"+'"'+">"+"<p>"+this.starter[x].description.slice(0,86)+"..."+"</p>"+"</div>"
+				+"</div>");
+			};
+	};
+
+	model.addObserver(this);
+	
 };

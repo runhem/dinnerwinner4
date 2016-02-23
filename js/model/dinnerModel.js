@@ -14,6 +14,7 @@ var DinnerModel = function() {
 	this.notifyObservers = function(obj){
 		for(var i=0; i<observersArray.length; i++){
 			observersArray[i].update(obj);
+			console.log("tetet");
 		}
 	}
 
@@ -98,7 +99,7 @@ var DinnerModel = function() {
 		return menu;
 		notifyObservers();
 		console.log(menu);
-	}
+	};
 	//Returns all ingredients for all the dishes on the menu.
 	//FUNKAR
 	this.getAllIngredients = function(){
@@ -205,18 +206,19 @@ var DinnerModel = function() {
 		var url = "http://api.bigoven.com/recipes?pg=1&rpp=25&title_kw="
                   + titleKeyword 
                   + "&api_key="+apiKey;
+        var model =  this;
+		console.log(url);
      	$.ajax({
         	type: "GET",
         	dataType: 'json',
         	cache: false,
         	url:url,
         	success: function(data){
-        		alert('sucess search');
-        		console.log(data);
+           		console.log(data);
+        		model.starters = data;
+        		model.notifyObservers();
         	}
-
         });
-
 	}
 
 	//function that returns a dish of specific name
@@ -224,6 +226,7 @@ var DinnerModel = function() {
 		var RecipeID = id;
 		var apiKey = "18f3cT02U9f6yRl3OKDpP8NA537kxYKu";
 		var url = "http://api.bigoven.com/recipe/"+RecipeID+"?api_key="+apiKey;
+
 		$.ajax({
 			type: "GET",
 			dataType: 'json',

@@ -12,13 +12,13 @@ var DinnerView1 = function (container, model) {
 	this.dishes = container.find("#dishes");
 
 //CONTENT. Hämtar alla rätter. Skapar divar som visar innehållet, sätter style till display:block så att alla visas som default
-	this.starter = (model.getAllDishes('starter'));
+	this.starter = (model.getAllDishes('appetizer'));
 	this.main = (model.getAllDishes('main dish'));
 	this.dessert = (model.getAllDishes('dessert'));
 
 	this.inputValue = container.find(".form-control");
-
-	for(var x=0, y=this.starter.length;x<y;x++){
+	console.log(this.starter);
+	for(var x=0, y=this.starter.ResultCount; x<y;x++){
 		this.dishes.append(
 			"<div class="+'"'+"col-md-3 dish starter"+'"'+"id="+'"'+this.starter[x].name+'"'+"style="+'"'+"display:block"+'"'+">"+
 			"<img src="+'"'+"images/"+this.starter[x].image+'"'+"id="+'"'+"image"+'"'+">"

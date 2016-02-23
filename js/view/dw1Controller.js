@@ -1,17 +1,17 @@
 var Dw1Controller = function(view, model) {
 
 	view.container.find("#starter").click( function(){
-		view.dinnerView1.displayDishes("starter");
+		view.dinnerView1.displayDishes("Appetizers");
 	}
 	);
 
 	view.container.find("#main").click( function(){
-		view.dinnerView1.displayDishes("main dish");
+		view.dinnerView1.displayDishes("Main Dish");
 	}
 	);
 
 	view.container.find("#dessert").click( function(){
-		view.dinnerView1.displayDishes("dessert");
+		view.dinnerView1.displayDishes("Desserts");
 	}
 	);
 

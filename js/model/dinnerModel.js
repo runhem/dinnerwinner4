@@ -200,12 +200,16 @@ var DinnerModel = function() {
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
-	this.getAllDishes = function (filter) {
+	this.getAllDishes = function (titleKeyword) {
 		var apiKey = "18f3cT02U9f6yRl3OKDpP8NA537kxYKu";
-		var titleKeyword = filter;
+		if(titleKeyword){
 		var url = "http://api.bigoven.com/recipes?pg=1&rpp=25&title_kw="
                   + titleKeyword 
                   + "&api_key="+apiKey;
+              }
+        if(!(titleKeyword)){
+       		var url = "http://api.bigoven.com/recipes?pg=1&rpp=25&api_key="+apiKey;
+        }
         var model =  this;
 		console.log(url);
      	$.ajax({
@@ -215,7 +219,7 @@ var DinnerModel = function() {
         	url:url,
         	success: function(data){
            		console.log(data);
-        		model.starters = data;
+        		model.allDishes = data;
         		model.notifyObservers();
         	}
         });

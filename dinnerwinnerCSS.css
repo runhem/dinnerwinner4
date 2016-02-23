@@ -87,6 +87,11 @@ font-style:italic;
 .menu-table th{
   background-color: #303030;
   color:white;
+
+}
+
+.menu-table td{
+  margin-left: 100px;
 }
 
 .removebtn{

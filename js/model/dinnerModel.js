@@ -14,7 +14,6 @@ var DinnerModel = function() {
 	this.notifyObservers = function(obj){
 		for(var i=0; i<observersArray.length; i++){
 			observersArray[i].update(obj);
-			console.log("tetet");
 		}
 	}
 
@@ -203,22 +202,20 @@ var DinnerModel = function() {
 	this.getAllDishes = function (titleKeyword) {
 		var apiKey = "18f3cT02U9f6yRl3OKDpP8NA537kxYKu";
 		if(titleKeyword){
-		var url = "http://api.bigoven.com/recipes?pg=1&rpp=25&title_kw="
+		var url = "http://api.bigoven.com/recipes?pg=1&rpp=10&title_kw="
                   + titleKeyword 
                   + "&api_key="+apiKey;
               }
-        if(!(titleKeyword)){
-       		var url = "http://api.bigoven.com/recipes?pg=1&rpp=25&api_key="+apiKey;
+        if(titleKeyword=='all'){
+       		var url = "http://api.bigoven.com/recipes?pg=1&rpp=10&api_key="+apiKey;
         }
         var model =  this;
-		console.log(url);
      	$.ajax({
         	type: "GET",
         	dataType: 'json',
         	cache: false,
         	url:url,
         	success: function(data){
-           		console.log(data);
         		model.allDishes = data;
         		model.notifyObservers();
         	}
@@ -238,7 +235,7 @@ var DinnerModel = function() {
 			url: url,
 			success: function(data){
 				alert('sucess');
-				console.log(data);
+				model.notifyObservers();
 			}
 		});
 	}

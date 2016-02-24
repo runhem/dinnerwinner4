@@ -19,17 +19,17 @@ var DinnerView1 = function (container, model) {
 
 	//Metod displayDishes som visar rätter beroende på vilken typ
 	this.displayDishes = function(dishType){
+
+		this.dishes.empty();
+
+		if (!(dishType)){
+		var result = model.getAllDishes('all');
+		console.log("not dishtype")}
+
 		if(dishType){
-		for(var i=0, x=document.getElementsByClassName("dish").length;i<x;i++){
-		document.getElementsByClassName("dish")[i].style.display = 'none';}
-		
-		for(var i=0, x=document.getElementsByClassName(dishType).length;i<x;i++){
-		document.getElementsByClassName(dishType)[i].style.display = 'block';}
+		var result = model.getAllDishes(dishType);
+		console.log("dishtype")
 		}
-	else{
-	for(var i=0, x=document.getElementsByClassName("dish").length;i<x;i++){
-		document.getElementsByClassName("dish")[i].style.display = 'block';}
-	}
 	};
 
 	//Metod som söker bland rätter och sedan visar de rätter som hittats och gömmer de andra
@@ -43,10 +43,7 @@ var DinnerView1 = function (container, model) {
 	};
 
 	this.update = function(){
-		console.log(model.starters);
-
 		this.allDishes = model.allDishes.Results;
-		console.log(this.allDishes.length)
 
 		for(var x=0, y=this.allDishes.length;x<y;x++){
 		this.dishes.append(

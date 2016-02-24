@@ -1,31 +1,32 @@
 var Dw1Controller = function(view, model) {
 
-	view.container.find("#starter").click( function(){
+	view.container.find("#starter").on('click', function(){
 		view.dinnerView1.displayDishes("Appetizers");
+		console.log("starter");
 	}
 	);
 
-	view.container.find("#main").click( function(){
+	view.container.find("#main").on('click', function(){
 		view.dinnerView1.displayDishes("Main Dish");
 	}
 	);
 
-	view.container.find("#dessert").click( function(){
+	view.container.find("#dessert").on('click', function(){
 		view.dinnerView1.displayDishes("Desserts");
 	}
 	);
 
-	view.container.find("#showall").click( function(){
-		view.dinnerView1.displayDishes();
+	view.container.find("#showall").on('click', function(){
+		view.dinnerView1.displayDishes('all');
 	}
 	);
 
-	view.container.find("#search").click( function(){
+	view.container.find("#search").on('click', function(){
 		searchInput = $('input:text').val();
 		view.dinnerView1.searchDishes(searchInput);
 	})
 
-	view.container.find(".dish").click( function(){
+	view.container.find(".dish").on('click', function(){
     	var status = $(this).attr('id');
     	console.log(status);
 	    	model.addToPending(status);

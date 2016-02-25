@@ -21,17 +21,16 @@ var DinnerModel = function() {
  	var menu = {'starter':[],'main':[],'dessert':[]};
 	var pending = [];
 
+
+	this.callFunction = function(id){
+		var dish=this.getDish(id);
+	}
 	
-	this.addToPending = function(name){
-		console.log(this.allDishes)
-		for(key in this.allDishes.Results){
-			if (this.allDishes.Results[key].Title == name){
-				pending.push(this.allDishes.Results[key]);
-				this.notifyObservers();	
-				console.log(pending);
-				return pending
-			}
-		}
+	this.addToPending = function(dish){
+		console.log('penis',dish);
+		pending.push(dish);
+		this.notifyObservers();
+	
 	}
 
 	this.removeFromPending = function(){
@@ -43,6 +42,7 @@ var DinnerModel = function() {
 
 	this.returnPending = function(){
 		return pending;
+
 	}
 
 	this.getPendingPrice = function(){	
@@ -230,14 +230,16 @@ var DinnerModel = function() {
 		var apiKey = "18f3cT02U9f6yRl3OKDpP8NA537kxYKu";
 		var url = "http://api.bigoven.com/recipe/"+RecipeID+"?api_key="+apiKey;
 
+		var model =this;
 		$.ajax({
 			type: "GET",
 			dataType: 'json',
 			cache: false,
 			url: url,
 			success: function(data){
-				alert('sucess');
+				console.log(data);
 				model.notifyObservers();
+				model.addToPending(data);
 			}
 		});
 	}

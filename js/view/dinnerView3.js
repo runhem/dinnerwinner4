@@ -27,6 +27,7 @@ var DinnerView3 = function (container, model) {
 	this.preparation.empty();
 
 	if(this.pending.length !== 0){
+		console.log('pending',this.pending)
 	this.guest = model.getNumberOfGuests();
 	this.price = model.getTotalDishPrice(this.pending[0].id);
 	this.guest = model.getNumberOfGuests();
@@ -49,17 +50,19 @@ var DinnerView3 = function (container, model) {
 	};
 
 	this.displayIn = function(){
-		for(x in this.pending[0].ingredients){
+		console.log("HEJ");
+		console.log('pending',this.pending);
+		for(x in this.pending[0].Ingredients){
 		this.quantity.append("<tr>")
-		this.quantity.append("<td>"+this.pending[0].ingredients[x].quantity*this.guest+"</td>");
-		if(this.pending[0].ingredients[x].unit == ''){
+		this.quantity.append("<td>"+this.pending[0].Ingredients[x].Quantity*this.guest+"</td>");
+		if(this.pending[0].Ingredients[x].Unit == ''){
 			this.quantity.append("<td>st</td>");
 		}
 		else{
-		this.quantity.append("<td>"+this.pending[0].ingredients[x].unit+"</td>");
+		this.quantity.append("<td>"+this.pending[0].Ingredients[x].Unit+"</td>");
 		}
-		this.quantity.append("<td>"+this.pending[0].ingredients[x].name+"</td>");
-		this.quantity.append("<td>"+"SEK "+this.pending[0].ingredients[x].price*this.guest+"</td>");
+		this.quantity.append("<td>"+this.pending[0].Ingredients[x].Name+"</td>");
+		this.quantity.append("<td>"+"SEK "+1*this.guest+"</td>");
 		this.quantity.append("</tr>");
 		}
 	};

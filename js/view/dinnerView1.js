@@ -47,7 +47,7 @@ var DinnerView1 = function (container, model) {
 
 		for(var x=0, y=this.allDishes.length;x<y;x++){
 		this.dishes.append(
-			"<div class="+'"'+"col-md-3 dish "+this.allDishes[x].Category+'"'+"id="+'"'+this.allDishes[x].Title+'"'+"style="+'"'+"display:block"+'"'+">"
+			"<div class="+'"'+"col-md-3 dish "+this.allDishes[x].Category+'"'+"id="+'"'+this.allDishes[x].RecipeID+'"'+"style="+'"'+"display:block"+'"'+">"
 			+"<img src="+'"'+this.allDishes[x].ImageURL+'"'+"id="+'"'+"image"+'"'+">"
 			+"<h5 id="+'"'+"title"+'"'+">"+this.allDishes[x].Title+"</h5>"
 			//+"<div id="+'"'+"description"+'"'+">"+"<p>"+this.starter[x].description.slice(0,86)+"..."+"</p>"+"</div>"

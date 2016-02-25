@@ -29,7 +29,7 @@ var Dw1Controller = function(view, model) {
 	this.update = function(){
 		$(".dish").on('click', function(){
 	   	var status = $(this).attr('id');
-	    model.addToPending(status);
+	    model.callFunction(status);
     	view.display("page-3");
 		});
 	};

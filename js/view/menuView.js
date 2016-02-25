@@ -58,7 +58,7 @@ var MenuView = function (container, model) {
 	};
 
 	if(this.pending.length !== 0){
-		this.pendingName.html(this.pending[0].name+" (pending)");
+		this.pendingName.html(this.pending[0].Title+" (pending)");
 		this.pendingPrice.html(model.getPendingPrice()+" SEK");
 	}
 	else{

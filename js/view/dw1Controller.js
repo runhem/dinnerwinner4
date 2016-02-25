@@ -26,12 +26,15 @@ var Dw1Controller = function(view, model) {
 		view.dinnerView1.searchDishes(searchInput);
 	})
 
-	view.container.find(".dish").on('click', function(){
-    	var status = $(this).attr('id');
-    	console.log(status);
-	    	model.addToPending(status);
+	this.update = function(){
+		$(".dish").on('click', function(){
+	   	var status = $(this).attr('id');
+	    model.addToPending(status);
     	view.display("page-3");
-	})
+		});
+	};
+
+	model.addObserver(this)
 };
 
 

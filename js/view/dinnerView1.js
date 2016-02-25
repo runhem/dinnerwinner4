@@ -19,9 +19,6 @@ var DinnerView1 = function (container, model) {
 
 	//Metod displayDishes som visar rätter beroende på vilken typ
 	this.displayDishes = function(dishType){
-
-		this.dishes.empty();
-
 		if (!(dishType)){
 		var result = model.getAllDishes('all');
 		console.log("not dishtype")}
@@ -44,6 +41,9 @@ var DinnerView1 = function (container, model) {
 
 	this.update = function(){
 		this.allDishes = model.allDishes.Results;
+
+		this.dishes.empty();
+
 
 		for(var x=0, y=this.allDishes.length;x<y;x++){
 		this.dishes.append(

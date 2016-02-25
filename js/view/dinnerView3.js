@@ -31,8 +31,8 @@ var DinnerView3 = function (container, model) {
 	this.price = model.getTotalDishPrice(this.pending[0].id);
 	this.guest = model.getNumberOfGuests();
 
-	this.dishDisplay.append("<div class="+'"'+"dishName"+'"'+">"+"<h3>"+this.pending[0].name+"</h3>"+"</div>"+
-		"<img src="+'"'+"images/"+this.pending[0].image+'"'+"id="+'"'+"image"+'"'+">"
+	this.dishDisplay.append("<div class="+'"'+"dishName"+'"'+">"+"<h3>"+this.pending[0].Title+"</h3>"+"</div>"+
+		"<img src="+'"'+this.pending[0].ImageURL+'"'+"id="+'"'+"image"+'"'+">"
 		+"<div class="+'"'+"description"+'"'+">"+"<p>"+this.pending[0].description+"</p>"+"</div>");
  
 	this.tableHeading.append("<h2>"+"Recipe for "+"<span id="+'"'+"guests"+'"'+"></span>"+" people"+"</h2>");

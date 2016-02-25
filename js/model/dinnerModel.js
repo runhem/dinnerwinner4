@@ -23,10 +23,12 @@ var DinnerModel = function() {
 
 	
 	this.addToPending = function(name){
-		for(key in dishes){
-			if (dishes[key].name == name){
-				pending.push(dishes[key]);
+		console.log(this.allDishes)
+		for(key in this.allDishes.Results){
+			if (this.allDishes.Results[key].Title == name){
+				pending.push(this.allDishes.Results[key]);
 				this.notifyObservers();	
+				console.log(pending);
 				return pending
 			}
 		}

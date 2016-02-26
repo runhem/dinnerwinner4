@@ -40,14 +40,14 @@ var DinnerModel = function() {
 	this.addToPending = function(dish){
 		console.log('dish',dish);
 		pending.push(dish);
-		this.notifyObservers();
+		this.notifyObservers(pending);
 	
 	}
 
 	this.removeFromPending = function(){
 		while(pending.length > 0) {
     	pending.pop();
-    	this.notifyObservers();
+    	this.notifyObservers(pending);
 		}
 	}
 
@@ -215,10 +215,10 @@ var DinnerModel = function() {
         	url:url,
         	success: function(data){
         		model.allDishes = data;
-        		model.notifyObservers();
+        		model.notifyObservers(data);
         	},
         	error: function(){
-        		
+        		console.log('error i getAllDishes');
         	}
         });
 	}
@@ -239,7 +239,7 @@ var DinnerModel = function() {
 				console.log(data);
 			
 				model.addToPending(data);
-				model.notifyObservers();
+				model.notifyObservers(data);
 			},
 			error: function(){
 				console.log('error i getDish');

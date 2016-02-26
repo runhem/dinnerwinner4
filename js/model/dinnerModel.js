@@ -21,23 +21,21 @@ var DinnerModel = function() {
  	var menu = {'starter':[],'main':[],'dessert':[]};
 	var pending = [];
 
-this.getPendingPrice = function(){	
-		var pendingPrice = 0;
-		if (pending.length !== 0){
-		for(x in pending[0].Ingredients){
-			var pendingPrice = pendingPrice + pending[0].Ingredients[x].Quantity;
-		};
-		var pendingPrice = pendingPrice*this.getNumberOfGuests();
-		console.log(pendingPrice);
-		return pendingPrice;
-	
-	}
-	else{return 0}
+
+	this.getPendingPrice = function(){	
+			var pendingPrice = 0;
+			if (pending.length !== 0){
+			for(x in pending[0].Ingredients){
+				var pendingPrice = pendingPrice + pending[0].Ingredients[x].Quantity;
+			};
+			var pendingPrice = pendingPrice*this.getNumberOfGuests();
+			console.log(pendingPrice);
+			return pendingPrice;
+		
+		}
+		else{return 0}
 	}
 
-	this.callFunction = function(id){
-		var dish=this.getDish(id);
-	}
 
 	this.addToPending = function(dish){
 		console.log('dish',dish);
@@ -218,6 +216,9 @@ this.getPendingPrice = function(){
         	success: function(data){
         		model.allDishes = data;
         		model.notifyObservers();
+        	},
+        	error: function(){
+        		
         	}
         });
 	}
@@ -239,6 +240,9 @@ this.getPendingPrice = function(){
 			
 				model.addToPending(data);
 				model.notifyObservers();
+			},
+			error: function(){
+				console.log('error i getDish');
 			}
 		});
 	}	

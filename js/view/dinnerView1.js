@@ -21,22 +21,10 @@ var DinnerView1 = function (container, model) {
 	this.displayDishes = function(dishType){
 		if (!(dishType)){
 		var result = model.getAllDishes('all');
-		console.log("not dishtype")}
 
 		if(dishType){
 		var result = model.getAllDishes(dishType);
-		console.log("dishtype")
 		}
-	};
-
-	//Metod som söker bland rätter och sedan visar de rätter som hittats och gömmer de andra
-	this.searchDishes = function(filter){
-	var storeDishes = [];
-
-	for(var i=0, x=document.getElementsByClassName("dish").length;i<x;i++){
-		document.getElementsByClassName("dish")[i].style.display = 'none';}	
-
-	var result = model.getAllDishes(filter);
 	};
 
 	this.update = function(){

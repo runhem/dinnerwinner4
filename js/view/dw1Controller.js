@@ -23,13 +23,13 @@ var Dw1Controller = function(view, model) {
 
 	view.container.find("#search").on('click', function(){
 		searchInput = $('input:text').val();
-		view.dinnerView1.searchDishes(searchInput);
+		view.dinnerView1.displayDishes(searchInput);
 	})
 
 	this.update = function(){
 		$(".dish").on('click', function(){
 	   	var status = $(this).attr('id');
-	    model.callFunction(status);
+	    model.getDish(status);
     	view.display("page-3");
 		});
 	};

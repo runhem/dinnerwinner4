@@ -18,7 +18,7 @@ var DinnerView4 = function (container, model) {
 			"<h4>"+menu[i].Category+"</h4>"+
 			"<img src="+'"'+menu[i].ImageURL+'"'+"id="+'"'+"image"+'"'+">"
 			+"<h5 id="+'"'+"title"+'"'+">"+menu[i].Title+"</h5>"
-			+"<div class="+'"'+"price"+'"'+">"+"<p>"+'hej'+" SEK"+"</p>"+"</div>"
+			+"<div class="+'"'+"price"+'"'+">"+"<p>"+model.getTotalDishPrice(menu[i].Ingredients)+" SEK"+"</p>"+"</div>"
 			+"</div>");
 	}
 

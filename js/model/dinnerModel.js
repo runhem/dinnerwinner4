@@ -25,9 +25,9 @@ var DinnerModel = function() {
 	this.callFunction = function(id){
 		var dish=this.getDish(id);
 	}
-	
+
 	this.addToPending = function(dish){
-		console.log('penis',dish);
+		console.log('dish',dish);
 		pending.push(dish);
 		this.notifyObservers();
 	
@@ -48,11 +48,13 @@ var DinnerModel = function() {
 	this.getPendingPrice = function(){	
 		var pendingPrice = 0;
 		if (pending.length !== 0){
-		for(x in pending[0].ingredients){
-			pendingPrice = pendingPrice + pending[0].ingredients[x].price;
+		for(x in pending[0].Ingredients){
+			var pendingPrice = pendingPrice + pending[0].Ingredients[x].Quantity;
 		};
-		pendingPrice = pendingPrice*this.getNumberOfGuests();
+		var pendingPrice = pendingPrice*this.getNumberOfGuests();
+		console.log(pendingPrice);
 		return pendingPrice;
+	
 	}
 	else{return 0}
 	}
@@ -76,14 +78,14 @@ var DinnerModel = function() {
 	//Returns the dish that is on the menu for selected type 
 	//FUNKAR
 	this.getSelectedDish = function(type) {
-		if(menu.starter.type == type){ 
-			return menu.starter.name;
+		if(menu.starter.Category == type){ 
+			return menu.starter.Title;
 		}
-		if(menu.main.type == type){
-			return menu.main.name;
+		if(menu.main.Category == type){
+			return menu.main.Title;
 		}
-		if(menu.dessert.type == type){
-			return menu.dessert.name;
+		if(menu.dessert.Category == type){
+			return menu.dessert.Title;
 		}
 	}
 
@@ -105,14 +107,14 @@ var DinnerModel = function() {
 	//FUNKAR
 	this.getAllIngredients = function(){
 		var ingredientList = [];
-		for(pos in menu.starter.ingredients){
-			ingredientList.push(menu.starter.ingredients[pos]);
+		for(pos in menu.starter.Ingredients){
+			ingredientList.push(menu.starter.Ingredients[pos]);
 			}
-		for(pos in menu.main.ingredients){
-			ingredientList.push(menu.main.ingredients[pos]);
+		for(pos in menu.main.Ingredients){
+			ingredientList.push(menu.main.Ingredients[pos]);
 			}
-		for(pos in menu.dessert.ingredients){
-			ingredientList.push(menu.dessert.ingredients[pos]);
+		for(pos in menu.dessert.Ingredients){
+			ingredientList.push(menu.dessert.Ingredients[pos]);
 			}
 		return ingredientList;
 		}
@@ -122,43 +124,41 @@ var DinnerModel = function() {
 	this.getTotalMenuPrice = function(allIngredients) {
 		var pris = 0;
 		for(x in allIngredients){
-		var pris = pris + allIngredients[x].price;
+		var pris = pris + allIngredients[x].Quantity;
 			}
+			console.log('pris',pris)
 		var personer = this.getNumberOfGuests();
-		totalPrice = pris * personer
-		return totalPrice
+		var totalPrice = pris*personer;
+		return totalPrice;
 		this.notifyObservers();
 	};
 
-	this.getTotalDishPrice = function(id){
+	this.getTotalDishPrice = function(dish){
 		var pris = 0;
 		var personer = this.getNumberOfGuests();
-		for (x in dishes){
-		if(dishes[x].id == id){
-		for(y in dishes[x].ingredients){
-		var pris = pris + dishes[x].ingredients[y].price;
+		for (x in dish){
+		var pris = pris + dish[x].Quantity;
 			}
-		return pris*personer
-		}
-	}
+		return pris*personer;
+		this.notifyObservers();
 	};
 
 
 	this.getDishIngredients = function(type){
 		var dishIngredientList = [];
-		if(type == 'starter'){
-		for(pos in menu.starter.ingredients){
-			dishIngredientList.push(menu.starter.ingredients[pos]);
+		if(type == 'Appetizer'){
+		for(pos in menu.starter.Ingredients){
+			dishIngredientList.push(menu.starter.Ingredients[pos]);
 		}
 		}
-		if(type == 'main dish'){
-		for(pos in menu.main.ingredients){
-			dishIngredientList.push(menu.main.ingredients[pos]);
+		if(type == 'Main Dish'){
+		for(pos in menu.main.Ingredients){
+			dishIngredientList.push(menu.main.Ingredients[pos]);
 		}
 		}
-		if(type == 'dessert'){
-		for(pos in menu.dessert.ingredients){
-			dishIngredientList.push(menu.dessert.ingredients[pos]);
+		if(type == 'Dessert'){
+		for(pos in menu.dessert.Ingredients){
+			dishIngredientList.push(menu.dessert.Ingredients[pos]);
 		}
 		}
 		return dishIngredientList;
@@ -168,17 +168,20 @@ var DinnerModel = function() {
 	//it is removed from the menu and the new one added.
 	//FUNKAR
 	this.addDishToMenu = function() {
-				if(pending[0].type == 'starter'){
+				if(pending[0].Category == 'Appetizers'){
 				menu.starter = pending[0];
 				}
-				if(pending[0].type == 'main dish'){
+				if(pending[0].Category == 'Main Dish'){
 					menu.main = pending[0];
 				}
-				if(pending[0].type == 'dessert'){
+				if(pending[0].Category == 'Desserts'){
 					menu.dessert = pending[0];
 				}
+				console.log('innan remove',pending);
 		this.removeFromPending();
 		this.notifyObservers();
+		console.log('efter addToMenu pending', pending);
+		console.log('efter addToMenu menu', menu);
 	};
 
 	//Removes dish from menu
@@ -238,8 +241,9 @@ var DinnerModel = function() {
 			url: url,
 			success: function(data){
 				console.log(data);
-				model.notifyObservers();
+			
 				model.addToPending(data);
+				model.notifyObservers();
 			}
 		});
 	}

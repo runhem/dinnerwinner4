@@ -25,9 +25,9 @@ var MenuView = function (container, model) {
 
 	var fullMenu = model.getFullMenu();
 	var allIngredList = model.getAllIngredients();
-	var starterIngredList = model.getDishIngredients('starter');
-	var mainIngredList = model.getDishIngredients('main dish');
-	var dessertIngredList = model.getDishIngredients('dessert');
+	var starterIngredList = model.getDishIngredients('Appetizer');
+	var mainIngredList = model.getDishIngredients('Main Dish');
+	var dessertIngredList = model.getDishIngredients('Dessert');
 	var pendingIngredList = model.getDishIngredients('pending');
 
 	if(fullMenu.starter.length == 0){
@@ -35,7 +35,7 @@ var MenuView = function (container, model) {
 	}
 	else{
 	document.getElementById("starterTr").style.display = 'block';
-	this.starterName.html(fullMenu.starter.name);
+	this.starterName.html(fullMenu.starter.Title);
 	this.starterPrice.html(model.getTotalMenuPrice(starterIngredList)+" SEK");
 	};
 
@@ -44,7 +44,7 @@ var MenuView = function (container, model) {
 	}
 	else{
 	document.getElementById("mainTr").style.display = 'block';
-	this.mainName.html(fullMenu.main.name);
+	this.mainName.html(fullMenu.main.Title);
 	this.mainPrice.html(model.getTotalMenuPrice(mainIngredList)+" SEK");
 	};
 
@@ -53,19 +53,19 @@ var MenuView = function (container, model) {
 	}
 	else{
 	document.getElementById("dessertTr").style.display = 'block';
-	this.dessertName.html(fullMenu.dessert.name);
+	this.dessertName.html(fullMenu.dessert.Title);
 	this.dessertPrice.html(model.getTotalMenuPrice(dessertIngredList)+" SEK");
 	};
 
 	if(this.pending.length !== 0){
 		this.pendingName.html(this.pending[0].Title+" (pending)");
-		this.pendingPrice.html(model.getPendingPrice()+" SEK");
+		this.pendingPrice.html(model.getTotalDishPrice(this.pending[0].Ingredients)+" SEK");
 	}
 	else{
 		this.pendingName.html("Pending");
 		this.pendingPrice.html("0.00");
 	};
-
+console.log(model.getPendingPrice())
 	allIngredList = model.getAllIngredients();
  	this.totalCost.html((model.getTotalMenuPrice(allIngredList)+model.getPendingPrice())+" SEK");
 };

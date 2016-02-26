@@ -27,18 +27,18 @@ var DinnerView3 = function (container, model) {
 	this.preparation.empty();
 
 	if(this.pending.length !== 0){
-		console.log('pending',this.pending)
+	console.log('pending update',this.pending)
 	this.guest = model.getNumberOfGuests();
-	this.price = model.getTotalDishPrice(this.pending[0].id);
+	this.price = model.getTotalDishPrice(this.pending[0].Ingredients);
 	this.guest = model.getNumberOfGuests();
 
 	this.dishDisplay.append("<div class="+'"'+"dishName"+'"'+">"+"<h3>"+this.pending[0].Title+"</h3>"+"</div>"+
 		"<img src="+'"'+this.pending[0].ImageURL+'"'+"id="+'"'+"image"+'"'+">"
-		+"<div class="+'"'+"description"+'"'+">"+"<p>"+this.pending[0].description+"</p>"+"</div>");
+		+"<div class="+'"'+"description"+'"'+">"+"<p>"+this.pending[0].Instructions+"</p>"+"</div>");
  
 	this.tableHeading.append("<h2>"+"Recipe for "+"<span id="+'"'+"guests"+'"'+"></span>"+" people"+"</h2>");
 
-	this.preparation.append("<div>"+this.pending[0].description+"</div>");
+	this.preparation.append("<div>"+this.pending[0].Instructions+"</div>");
 
 
 		this.guest = model.getNumberOfGuests();
@@ -51,7 +51,7 @@ var DinnerView3 = function (container, model) {
 
 	this.displayIn = function(){
 		console.log("HEJ");
-		console.log('pending',this.pending);
+		console.log('pending display',this.pending);
 		for(x in this.pending[0].Ingredients){
 		this.quantity.append("<tr>")
 		this.quantity.append("<td>"+this.pending[0].Ingredients[x].Quantity*this.guest+"</td>");

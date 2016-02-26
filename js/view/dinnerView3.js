@@ -20,14 +20,13 @@ var DinnerView3 = function (container, model) {
 //	this.selDishis = pending.id; //hämta värde
 
 
-	this.update = function(){
+	this.update = function(object){
 	this.pending = model.returnPending();
 	this.dishDisplay.empty();
 	this.tableHeading.empty();
 	this.preparation.empty();
 
 	if(this.pending.length !== 0){
-	console.log('pending update',this.pending)
 	this.guest = model.getNumberOfGuests();
 	this.price = model.getTotalDishPrice(this.pending[0].Ingredients);
 	this.guest = model.getNumberOfGuests();

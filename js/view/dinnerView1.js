@@ -5,33 +5,19 @@ var DinnerView1 = function (container, model) {
 
 	model.removeFromPending();
 
-	// Get all the relevant elements of the view (ones that show data
-  	// and/or ones that responed to interaction)
-	
 	//containers för main content 
 	this.dishes = container.find("#dishes");
 
 //CONTENT. Hämtar alla rätter. Skapar divar som visar innehållet, sätter style till display:block så att alla visas som default
-	this.getAllDishes = model.getAllDishes();
+
+// ON PAGE LOAD? 
+	model.getAllDishes();
 
 	this.inputValue = container.find(".form-control");
 
-
-	//Metod displayDishes som visar rätter beroende på vilken typ
-	this.displayDishes = function(dishType){
-		if (!(dishType)){
-		var result = model.getAllDishes('all');
-
-		if(dishType){
-		var result = model.getAllDishes(dishType);
-		}
-	};
-
-	this.update = function(){
-		this.allDishes = model.allDishes.Results;
-
+	this.update = function(object){
+		this.allDishes = object.Results;
 		this.dishes.empty();
-
 
 		for(var x=0, y=this.allDishes.length;x<y;x++){
 		this.dishes.append(
@@ -44,5 +30,4 @@ var DinnerView1 = function (container, model) {
 	};
 
 	model.addObserver(this);
-
 };

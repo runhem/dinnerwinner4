@@ -1,30 +1,29 @@
 var Dw1Controller = function(view, model) {
 
 	view.container.find("#starter").on('click', function(){
-		view.dinnerView1.displayDishes("Appetizers");
-		console.log("starter");
+		model.getAllDishes("Appetizers");
 	}
 	);
 
 	view.container.find("#main").on('click', function(){
-		view.dinnerView1.displayDishes("Main Dish");
+		model.getAllDishes("Main Dish");
 	}
 	);
 
 	view.container.find("#dessert").on('click', function(){
-		view.dinnerView1.displayDishes("Desserts");
+		model.getAllDishes("Desserts");
 	}
 	);
 
 	view.container.find("#showall").on('click', function(){
-		view.dinnerView1.displayDishes('all');
+		model.getAllDishes('all');
 	}
 	);
 
 	view.container.find("#search").on('click', function(){
 		searchInput = $('input:text').val();
-		view.dinnerView1.displayDishes(searchInput);
-	})
+		model.getAllDishes(searchInput);
+	});
 
 	this.update = function(){
 		$(".dish").on('click', function(){
@@ -36,9 +35,3 @@ var Dw1Controller = function(view, model) {
 
 	model.addObserver(this)
 };
-
-
-
-
-
-

@@ -9,7 +9,7 @@ var DinnerView5 = function (container, model) {
 	this.update = function(){
 	var menu = model.getFullMenu();
 
-	this.dishsummary.empty();
+/*	this.dishsummary.empty();
 	if(menu.starter.name !=="None selected"){
 	this.dishsummary.append(
 		"<div class="+'"'+"col-md-12 dish-summary"+'"'+">"+"<div class="+'"'+"col-md-3"+'"'+">"+"<img src="+'"'+"images/"+menu.starter.image+'"'+">"
@@ -33,7 +33,7 @@ var DinnerView5 = function (container, model) {
 	}
 	//Skriver ut totalt pris på alla rätter på menyn
 	var allIngredients = model.getAllIngredients();
-	this.totalPrice.append("Totalt pris:"+"\n"+model.getTotalMenuPrice(allIngredients)+" SEK");
+	this.totalPrice.append("Totalt pris:"+"\n"+model.getTotalMenuPrice(allIngredients)+" SEK");*/
 	};
 
 	model.addObserver(this);

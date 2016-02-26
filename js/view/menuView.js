@@ -65,7 +65,6 @@ var MenuView = function (container, model) {
 		this.pendingName.html("Pending");
 		this.pendingPrice.html("0.00");
 	};
-console.log(model.getPendingPrice())
 	allIngredList = model.getAllIngredients();
  	this.totalCost.html((model.getTotalMenuPrice(allIngredList)+model.getPendingPrice())+" SEK");
 };

@@ -12,16 +12,10 @@ var DinnerView3 = function (container, model) {
 	this.tableHeading = container.find("#tableHeading");
 	this.preparation = container.find("#preparation-display");
 
-	//räknar ut pris på ingredienser
-	var dishes = model.getAllDishes('main dish');
-//	var pending = model.returnPending();
-//	console.log(pending);
-
-//	this.selDishis = pending.id; //hämta värde
-
 
 	this.update = function(object){
-	this.pending = model.returnPending();
+	this.pending = object;
+
 	this.dishDisplay.empty();
 	this.tableHeading.empty();
 	this.preparation.empty();
@@ -43,14 +37,13 @@ var DinnerView3 = function (container, model) {
 		this.guest = model.getNumberOfGuests();
 		document.getElementById("guests").innerHTML = this.guest;
 		this.quantity.empty();
-		this.displayIn();
+		this.displayIn(object);
 		this.recipeCost.html("<td>"+"SEK "+this.price+"</td>");
 	}
 	};
 
-	this.displayIn = function(){
-		console.log("HEJ");
-		console.log('pending display',this.pending);
+	this.displayIn = function(object){
+		this.pending = object;
 		for(x in this.pending[0].Ingredients){
 		this.quantity.append("<tr>")
 		this.quantity.append("<td>"+this.pending[0].Ingredients[x].Quantity*this.guest+"</td>");

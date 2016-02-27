@@ -33,5 +33,7 @@ var Dw1Controller = function(view, model) {
 		});
 	};
 
+	// EVENT.TARGET
+
 	model.addObserver(this)
 };

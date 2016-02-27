@@ -3,35 +3,30 @@ var DinnerView3 = function (container, model) {
 
 	//Hitta rätt taggar
 	this.dishDisplay = container.find("#dish-display");
-	this.ingredientsDisplay = container.find("#ingridient-display");
 	this.quantity = container.find("#quantity");
-	this.unit = container.find("#unit");
-	this.ingredients = container.find("#ingredients");
-	this.price = container.find("#price");
 	this.recipeCost = container.find("#recipeCost");
 	this.tableHeading = container.find("#tableHeading");
-	this.preparation = container.find("#preparation-display");
-
+	this.preparation = container.find("#preparation-display")
 
 	this.update = function(object){
 	this.pending = object;
+	console.log('3', object);
 
 	this.dishDisplay.empty();
 	this.tableHeading.empty();
 	this.preparation.empty();
-
-	if(this.pending.length !== 0){
+	try{
 	this.guest = model.getNumberOfGuests();
-	this.price = model.getTotalDishPrice(this.pending[0].Ingredients);
+	this.price = model.getTotalDishPrice(object.Ingredients);
 	this.guest = model.getNumberOfGuests();
 
-	this.dishDisplay.append("<div class="+'"'+"dishName"+'"'+">"+"<h3>"+this.pending[0].Title+"</h3>"+"</div>"+
-		"<img src="+'"'+this.pending[0].ImageURL+'"'+"id="+'"'+"image"+'"'+">"
-		+"<div class="+'"'+"description"+'"'+">"+"<p>"+this.pending[0].Instructions+"</p>"+"</div>");
+	this.dishDisplay.append("<div class="+'"'+"dishName"+'"'+">"+"<h3>"+object.Title+"</h3>"+"</div>"+
+		"<img src="+'"'+object.ImageURL+'"'+"id="+'"'+"image"+'"'+">"
+		+"<div class="+'"'+"description"+'"'+">"+"<p>"+object.Instructions+"</p>"+"</div>");
  
 	this.tableHeading.append("<h2>"+"Recipe for "+"<span id="+'"'+"guests"+'"'+"></span>"+" people"+"</h2>");
 
-	this.preparation.append("<div>"+this.pending[0].Instructions+"</div>");
+	this.preparation.append("<div>"+object.Instructions+"</div>");
 
 
 		this.guest = model.getNumberOfGuests();
@@ -40,20 +35,23 @@ var DinnerView3 = function (container, model) {
 		this.displayIn(object);
 		this.recipeCost.html("<td>"+"SEK "+this.price+"</td>");
 	}
+	catch(err){
+		console.log(object);
+	}
 	};
 
 	this.displayIn = function(object){
 		this.pending = object;
-		for(x in this.pending[0].Ingredients){
+		for(x in object.Ingredients){
 		this.quantity.append("<tr>")
-		this.quantity.append("<td>"+this.pending[0].Ingredients[x].Quantity*this.guest+"</td>");
-		if(this.pending[0].Ingredients[x].Unit == ''){
+		this.quantity.append("<td>"+object.Ingredients[x].Quantity*this.guest+"</td>");
+		if(object.Ingredients[x].Unit == ''){
 			this.quantity.append("<td>st</td>");
 		}
 		else{
-		this.quantity.append("<td>"+this.pending[0].Ingredients[x].Unit+"</td>");
+		this.quantity.append("<td>"+object.Ingredients[x].Unit+"</td>");
 		}
-		this.quantity.append("<td>"+this.pending[0].Ingredients[x].Name+"</td>");
+		this.quantity.append("<td>"+object.Ingredients[x].Name+"</td>");
 		this.quantity.append("<td>"+"SEK "+1*this.guest+"</td>");
 		this.quantity.append("</tr>");
 		}

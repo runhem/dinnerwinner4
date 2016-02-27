@@ -40,14 +40,12 @@ var DinnerModel = function() {
 	this.addToPending = function(dish){
 		console.log('dish',dish);
 		pending.push(dish);
-		this.notifyObservers(pending);
-	
-	}
+	};
 
 	this.removeFromPending = function(){
 		while(pending.length > 0) {
     	pending.pop();
-    	this.notifyObservers(pending);
+    	this.notifyObservers();
 		}
 	}
 
@@ -174,7 +172,7 @@ var DinnerModel = function() {
 					menu.dessert = pending[0];
 				}
 		this.removeFromPending();
-		this.notifyObservers();
+		this.notifyObservers(menu);
 	};
 
 	//Removes dish from menu

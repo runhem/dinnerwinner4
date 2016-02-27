@@ -3,7 +3,7 @@ var DinnerView1 = function (container, model) {
 
 	this.container = container;
 
-	model.removeFromPending();
+//	model.removeFromPending();
 
 	//containers för main content 
 	this.dishes = container.find("#dishes");
@@ -11,14 +11,15 @@ var DinnerView1 = function (container, model) {
 //CONTENT. Hämtar alla rätter. Skapar divar som visar innehållet, sätter style till display:block så att alla visas som default
 
 // ON PAGE LOAD? 
-	model.getAllDishes();
+//	model.getAllDishes();
 
 	this.inputValue = container.find(".form-control");
 
 	this.update = function(object){
+		console.log('1', object)
+	try{
 		this.allDishes = object.Results;
 		this.dishes.empty();
-
 		for(var x=0, y=this.allDishes.length;x<y;x++){
 		this.dishes.append(
 			"<div class="+'"'+"col-md-3 dish "+this.allDishes[x].Category+'"'+"id="+'"'+this.allDishes[x].RecipeID+'"'+"style="+'"'+"display:block"+'"'+">"
@@ -27,6 +28,10 @@ var DinnerView1 = function (container, model) {
 			//+"<div id="+'"'+"description"+'"'+">"+"<p>"+this.starter[x].description.slice(0,86)+"..."+"</p>"+"</div>"
 			+"</div>");
 			};
+		}
+	catch(err){
+		console.log(object)
+	}
 	};
 
 	model.addObserver(this);
